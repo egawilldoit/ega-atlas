@@ -1,14 +1,20 @@
 ---
 name: atlas-ingest
-description: Use when a new source lands in raw/ (PRD, notes, transcript, export, article) or the user says "add this to the atlas". Compiles the source into wiki pages without touching the original.
+description: Use when a file lands in raw/inbox/ (PRD, notes, transcript, export, article) or the user says "add this to the atlas". Compiles the source into wiki pages without changing the original.
 ---
 
 # Atlas Ingest
 
-1. Put the source in `raw/<topic>/<yyyy-mm-dd>-<short-name>.md` (or keep its file). Never edit it afterwards.
-2. Read it fully. List the subjects it touches (projects, decisions, tools, people).
-3. For each subject: update the existing page in `wiki/`, or create one if none exists.
-   Add facts with `(source: raw/<path>)`. Note contradictions with existing pages under Open questions; don't silently overwrite.
-4. Add any new pages to `index.md`.
-5. Append to `log.md`: `YYYY-MM-DD | agent | ingest raw/<path> | pages touched`.
-6. Commit: `atlas: ingest <short-name>`.
+1. `git pull`.
+2. Move the source from `raw/inbox/` to `raw/<topic>/YYYY-MM-DD-<short-name>.<ext>` (topic = project or area name). Never edit its content.
+3. Scan it for secrets, contacts, addresses or salaries. If present, stop and ask before committing it; the repo may be public.
+4. Read it fully. List the subjects it touches (projects, areas, concepts, decisions).
+5. For each subject, follow `atlas-update`: extend the existing page, or create one from `templates/`. Add facts with `(source: raw/<path>)`.
+6. Contradiction with an existing page? Don't overwrite silently. Put both versions under Open questions with sources, and tell the user.
+7. Update `index.md` for new pages and `now.md` if priorities changed.
+8. Append to `log.md`:
+   ```
+   ## [YYYY-MM-DD] ingest | raw/<path> | <agent>
+   Pages touched: ...
+   ```
+9. Commit `atlas: ingest <short-name>` and push.
