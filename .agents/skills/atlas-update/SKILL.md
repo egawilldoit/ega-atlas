@@ -5,24 +5,20 @@ description: Use at the end of any task that changed a project's state, a decisi
 
 # Atlas Update
 
-1. Open the project page in `wiki/` (create it from the template below if missing, and add it to `index.md`).
-2. Rewrite, don't append:
-   - **Current state** — what exists now (shipped, in progress, blocked).
-   - **Decisions** — what was decided and why. Replace decisions that changed.
-   - **Open questions** — remove answered ones.
-   - **Next steps** — the next 1–5 concrete actions.
-3. Append one line to `log.md`: `YYYY-MM-DD | agent | page | what changed`.
-4. Commit: `atlas: <page> — <change>`.
-
-## Page template
-```
-# <Name>
-
-<one-line summary>
-
-## Current state
-## Decisions
-## Open questions
-## Next steps
-## Links
-```
+1. `git pull`.
+2. Find the page: check `index.md`, then `grep -ril "<name>" wiki/`. Edit the existing page; never create a near-duplicate.
+3. No page yet? Copy the right file from `templates/` into the right `wiki/` folder (see "Where does it go?" in AGENTS.md) and fill the frontmatter.
+4. Rewrite, don't append:
+   - **Frontmatter**: set `updated` to today; fix `status` and `related`.
+   - **Current state**: what exists now (shipped, in progress, blocked).
+   - **Decisions**: one line each with the why. A lasting or costly choice also gets a page in `wiki/decisions/` (next free NNNN), linked here.
+   - **Open questions**: remove answered ones; add contradictions with their sources.
+   - **Next steps**: the next 1-5 concrete actions.
+5. Run "Touch every place" from AGENTS.md: `now.md`, `index.md`, related pages, decisions, reverse states.
+6. Moving a page to `wiki/archive/`: set `status: archived`, move it, update `index.md`, fix every link to it (`grep -rl "<file>.md" .`).
+7. Append to `log.md`:
+   ```
+   ## [YYYY-MM-DD] update | <page> | <agent>
+   What changed and why.
+   ```
+8. Commit `atlas: <page> - <change>` and push. Rejected? Pull, merge by hand, push. Never force-push.
