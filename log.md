@@ -53,3 +53,6 @@ Expanded public-repository safety policy to exclude proprietary employer/client 
 
 ## [2026-10-23] update | agent-delivery-workflow, helm, ega-house | ChatGPT
 New audit: clarified Atlas/EGA Skills/Linear/T3/Helm authority chain, distinguished EGA House Runner from native T3 execution, and captured the optional-subagent design versus current launch rejection. Added evidence-first failure diagnosis vocabulary.
+
+## [2026-10-23] create | wiki/areas/engineering-portfolio.md | ChatGPT
+Reviewed secondary repositories (Token Observatory, VM Updates Scripts, ShipLoop, Hermes Mobile, Back15 and older quota tracker). Added a source-linked non-priority inventory rather than manufacturing active project states; linked from now/index. No deployment claims or confidential sources.

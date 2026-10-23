@@ -16,6 +16,7 @@ Start with [now.md](now.md). Every wiki page is listed here once.
 | Page | Status | Summary |
 |---|---|---|
 | [Job hunt](wiki/areas/job-hunt.md) | active | DevOps/Cloud, then CRM; Rabat/Casablanca, five applications/day target |
+| [Engineering portfolio](wiki/areas/engineering-portfolio.md) | active | Existing secondary codebases; inventory only, not an expanded priority queue |
 
 ## Concepts
 

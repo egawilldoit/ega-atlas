@@ -13,7 +13,7 @@ What matters this week. Snapshot checked 2026-10-23; refresh live issue/PR statu
 2. **Gymtrack.** Finish Sprint 2 onboarding/staff/RBAC and certify actual hosted DEV behavior. See [Gymtrack](wiki/projects/gymtrack.md).
 3. **Helm, then EGA Skills.** Complete Helm v0.2's DEV workflow without promoting Production; finish EGA Skills release/console acceptance before declaring stable. See [Helm](wiki/projects/helm.md) and [EGA Skills](wiki/projects/ega-skills.md).
 
-Other projects, including EGA House, stay parked for prioritization unless explicitly resumed.
+Other projects remain outside this queue unless explicitly resumed. See the [engineering portfolio](wiki/areas/engineering-portfolio.md) for verified repository inventory.
 
 ## Active work
 
