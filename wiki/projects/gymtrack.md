@@ -15,7 +15,7 @@ Multi-tenant gym-management SaaS built with two teammates. Finish Sprint 2 onboa
 - Sprint 2 Book a Demo, Platform Admin review, Owner provisioning/credentials/first site, foundational custom roles and several domain permission checks are recorded Done in [Linear GYM](https://linear.app/egawilldoit/team/GYM). Done/merged does not certify hosted behavior.
 - [GYM-72](https://linear.app/egawilldoit/issue/GYM-72) lifecycle *design* reconciliation is Done (merged [MR !110](https://gitlab.com/trackgym101/gymsas/-/merge_requests/110)); a separate setup-only access implementation remains [GYM-96](https://linear.app/egawilldoit/issue/GYM-96) Todo.
 - [GYM-88](https://linear.app/egawilldoit/issue/GYM-88) records four additional migrations applied to shared DEV on 2026-10-23 and DB readiness passed. Functional Auth/mail/browser, multi-tenant/RBAC and full end-to-end QA remain **not accepted**.
-- [GYM-83](https://linear.app/egawilldoit/issue/GYM-83) staff creation and [GYM-84](https://linear.app/egawilldoit/issue/GYM-84) role-impact preview/edit: In Progress. [GYM-89](https://linear.app/egawilldoit/issue/GYM-89) staff role/sites reassignment and [GYM-86](https://linear.app/egawilldoit/issue/GYM-86) permanent deletion: Todo.
+- [GYM-83](https://linear.app/egawilldoit/issue/GYM-83) staff creation (draft [MR !112](https://gitlab.com/trackgym101/gymsas/-/merge_requests/112)) and [GYM-84](https://linear.app/egawilldoit/issue/GYM-84) role-impact preview/edit (draft [MR !111](https://gitlab.com/trackgym101/gymsas/-/merge_requests/111)): In Progress as of 2026-10-23. **Neither MR was merged** at this check; “mergeable” alone does not mean approved/reviewed or hosted accepted. [GYM-89](https://linear.app/egawilldoit/issue/GYM-89) staff role/sites reassignment and [GYM-86](https://linear.app/egawilldoit/issue/GYM-86) permanent deletion: Todo.
 
 ## Decisions
 
@@ -27,12 +27,12 @@ Multi-tenant gym-management SaaS built with two teammates. Finish Sprint 2 onboa
 
 ## Open questions
 
-- [GYM-86](https://linear.app/egawilldoit/issue/GYM-86) says approval of deletion, PII, and audit-retention details is still a prerequisite, despite [GYM-75](https://linear.app/egawilldoit/issue/GYM-75) being Done. Confirm product signoff, not just document merge.
+- [GYM-75](https://linear.app/egawilldoit/issue/GYM-75) has status **Done**, but the issue description (last substantive design record) still explicitly says product/privacy signoff is **missing** for retention, anonymization, cross-gym identity and irreversible deletion. This is a **status/evidence conflict**, not approval. [GYM-86](https://linear.app/egawilldoit/issue/GYM-86) stays blocked until explicit policy signoff is linked; do not implement irreversible deletion from the Done label.
 - Which end-to-end hosted DEV Auth/mail/browser scenarios have live evidence, beyond database migration readiness? [GYM-88](https://linear.app/egawilldoit/issue/GYM-88) remains open.
 
 ## Next steps
 
-1. Finish and independently review GYM-83 and GYM-84 against the current `develop` head.
+1. Review draft MRs !112 (GYM-83) and !111 (GYM-84), check their actual heads and dependencies, and merge only after the required gates and authorization.
 2. Implement GYM-96 setup-only access with negative tests.
 3. Complete GYM-88 hosted functional QA and attach actual runtime evidence.
 4. Reconcile GYM-86 policy approval; then take GYM-89/86 in dependency order.

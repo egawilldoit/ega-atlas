@@ -32,3 +32,6 @@ Verified 7 wiki pages against index, required frontmatter, template sections, re
 
 ## [2026-10-23] update | wiki/projects/helm.md, now.md | ChatGPT
 Pass 1/5: verified open draft PRs #35–#37 and separated proposed write-safety/issue UI/docs from merged develop or hosted acceptance; revised current next steps.
+
+## [2026-10-23] update | wiki/projects/gymtrack.md | ChatGPT
+Pass 2/5: verified draft MRs !111/!112 and the GYM-75 Done-label versus unapproved deletion-policy discrepancy. Kept irreversible deletion blocked pending explicit signoff, not inferred approval.
