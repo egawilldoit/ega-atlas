@@ -10,7 +10,7 @@ Based on Karpathy's LLM Wiki pattern: agents write and maintain the wiki; the hu
 
 1. **Current, not historical.** A page says what is true now. History lives in `log.md` and git. A stale page is a bug.
 2. **Small and obvious.** Plain Markdown, a few folders, no tooling to run. If a structure needs explaining, it is too clever.
-3. **One source of truth.** One page per subject. Linear holds tickets, GitHub holds code, the atlas holds state, decisions and the why. Link to them; never copy them.
+3. **One source of truth.** One page per subject. Linear holds tickets, the owning GitHub **or GitLab** repository holds code, and Atlas holds dated context, decisions and the why. Link to them; never copy them.
 4. **Read before you act, write before you leave.** Every session starts from `now.md`. Every session that changes something ends by updating the atlas.
 
 ## A note from Abdelilah

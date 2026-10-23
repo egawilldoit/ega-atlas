@@ -62,3 +62,6 @@ Promoted two source-backed lasting architecture choices into short accepted deci
 
 ## [2026-10-23] update | wiki/concepts/agent-runtime-vm.md, wiki/areas/engineering-portfolio.md | ChatGPT
 Linked the canonical versioned VM updater and warned that native T3 updates can restart active services. Distinguished recorded token telemetry from provider entitlement/reset availability; no VM processes, credentials or subscriptions were changed.
+
+## [2026-10-23] schema | AGENTS.md | ChatGPT
+Corrected multi-forge source-of-truth guidance: Gymtrack code lives in GitLab while Helm/EGA Skills live in GitHub. Atlas remains a dated context layer rather than a code or live-issue authority.
