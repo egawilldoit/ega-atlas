@@ -18,10 +18,11 @@ Other projects remain outside this queue unless explicitly resumed. See the [eng
 ## Active work
 
 - **Gymtrack:** GYM-84 merged/Done ([MR !111](https://gitlab.com/trackgym101/gymsas/-/merge_requests/111)); [GYM-83](https://linear.app/egawilldoit/issue/GYM-83) remains a draft; [GYM-88](https://linear.app/egawilldoit/issue/GYM-88) functional QA In Progress. GYM-96 setup-only gap Todo; GYM-86/89 Todo.
-- **Helm:** `develop` v0.2 baseline is not full acceptance. Draft PRs #35–#37 are **unmerged**; Linear OAuth, issue execution, isolated DEV acceptance and Linear → T3 → PR proof remain. Production held.
+- **Helm:** v0.2 DEV baseline `b85a8e3` remains unchanged. Draft [#35](https://github.com/EGA-BUILDS/helm/pull/35) safe native-write target, [#36](https://github.com/EGA-BUILDS/helm/pull/36) mounted execution review, [#37](https://github.com/EGA-BUILDS/helm/pull/37) docs/UX, and **security patches [#38](https://github.com/EGA-BUILDS/helm/pull/38) (develop), [#39](https://github.com/EGA-BUILDS/helm/pull/39) (main)** are CI-green but **unmerged**. Prioritize the Next.js security review. Linear OAuth, safe isolated write target and full EGA-685 acceptance remain open; Production v0.2 promotion held.
 - **EGA Skills:** v2.0.0 published; main package 2.0.1. Production console deployed, but owner sign-in/authorization and release-version reconciliation remain open.
 
 ## Watch out
 
-- These are current checkpoints, not claims that all work is delivered. Linear owns ticket state, Git owns code, real runtime evidence owns acceptance.
+- Helm's deployed code remains on Next.js 16.4.0, affected by October 2026 security advisories. Security-only patching of `main` is **not** authorization to promote v0.2.
+- Linear owns ticket state, Git owns code, and real runtime evidence owns acceptance. A green draft PR is not deployed functionality.
 - Source material is incomplete: the October 23 context backfill did **not** inspect 1,000 full chat transcripts. Do not fabricate missing decisions or treat old statuses as current.
