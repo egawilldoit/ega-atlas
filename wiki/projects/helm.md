@@ -19,7 +19,7 @@ Owner-facing control plane that connects Linear objectives/issues to native T3 C
 
 ## Decisions
 
-- **Linear** owns issue requirements/status; **T3 Code** performs actual native work; Git/CI and browser/runtime receipts provide evidence. Helm observes/coordinates; no shadow ticket system or replacement executor.
+- **Linear** owns issue requirements/status; **T3 Code** performs actual native work; Git/CI and browser/runtime receipts provide evidence. Helm observes/coordinates; no shadow ticket system, replacement executor, or implicit integration with EGA House's separate Runner.
 - Choose a main model for each execution; default **no subagents**. Opt-in subagent/model is a preference input, not a guarantee that T3 orchestrates them.
 - Use a dedicated worktree and explicit base/target branch. Let execution create a PR but **do not auto-merge**. Follow-ups, interrupt and attention states stay on the native thread.
 - Owner-controlled permissions; separate DEV operate consent from existing Production read-only access; no production release without explicit approval.
@@ -27,6 +27,7 @@ Owner-facing control plane that connects Linear objectives/issues to native T3 C
 ## Open questions
 
 - What remains to pass genuine Linear OAuth, mapping and owner-browser acceptance (not just API-key proof)?
+- Subagents are an approved **optional design input**, but PR #36 reports the server still rejects subagent-enabled launches. Record this as an implementation/acceptance gap until the supported native capability is demonstrated, not a guarantee of working opt-in subagents.
 - Which hosted DEV prerequisites, consent UI and complete Linear → T3 → PR evidence are still missing? Confirm via EGA-770/769/685.
 
 ## Next steps

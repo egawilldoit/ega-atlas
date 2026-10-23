@@ -50,3 +50,6 @@ New audit: MR !111 merged at 08:15 UTC and GYM-84 is Done; MR !112 remains a dra
 
 ## [2026-10-23] schema | AGENTS.md, atlas-ingest | ChatGPT
 Expanded public-repository safety policy to exclude proprietary employer/client information, private chat exports and unredacted logs. Moved intake classification before source movement/commit; no confidential source material was added.
+
+## [2026-10-23] update | agent-delivery-workflow, helm, ega-house | ChatGPT
+New audit: clarified Atlas/EGA Skills/Linear/T3/Helm authority chain, distinguished EGA House Runner from native T3 execution, and captured the optional-subagent design versus current launch rejection. Added evidence-first failure diagnosis vocabulary.
