@@ -68,3 +68,6 @@ Corrected multi-forge source-of-truth guidance: Gymtrack code lives in GitLab wh
 
 ## [2026-10-23] lint | all | ChatGPT
 Validated 11 wiki pages, 3 decisions, index coverage, required frontmatter/sections, relative links and related-page references after portfolio/decision/tooling updates. now.md has 224 words; no mechanical link issues or credential-pattern matches detected. Live deployment and historical chat completeness are outside this lint.
+
+## [2026-10-23] update | wiki/projects/helm.md, now.md | ChatGPT
+Re-verified Helm develop/main, DEV/Production Vercel, the five latest draft PR heads/checks, Linear issues and October Next.js advisories. Replaced the Helm handoff with code-vs-live R01–R12 gates, isolated native-write safety, owner actions and security patch priority; updated now.md. No Helm merges or deployments.
