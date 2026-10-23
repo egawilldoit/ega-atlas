@@ -59,3 +59,6 @@ Reviewed secondary repositories (Token Observatory, VM Updates Scripts, ShipLoop
 
 ## [2026-10-23] decision | wiki/decisions/0002-native-t3-execution-ownership.md, wiki/decisions/0003-gymtrack-shared-dev-migrations.md | ChatGPT
 Promoted two source-backed lasting architecture choices into short accepted decisions. Linked Helm, Gymtrack, workflow and index; did not claim live delivery acceptance or execute migrations.
+
+## [2026-10-23] update | wiki/concepts/agent-runtime-vm.md, wiki/areas/engineering-portfolio.md | ChatGPT
+Linked the canonical versioned VM updater and warned that native T3 updates can restart active services. Distinguished recorded token telemetry from provider entitlement/reset availability; no VM processes, credentials or subscriptions were changed.

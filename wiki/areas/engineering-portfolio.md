@@ -25,7 +25,7 @@ GitHub push dates indicate repository activity only; they are not active-project
 ## Decisions
 
 - Keep these as **inventory**, not additional current priorities in [now.md](../../now.md).
-- Prefer the established Token Observatory codebase when investigating recorded token usage; first recheck its actual deployment and data scope. Do not treat older starter projects as implemented alternatives.
+- Prefer the established Token Observatory codebase when investigating **recorded usage**; first recheck its actual deployment and data scope. Historical token consumption and deduplicated snapshots do **not** establish live subscription limits, 5-hour reset availability or future quota. Do not treat the older starter tracker as an implemented alternative.
 - Existing agent service/updater tools are separate from product delivery. Preserve authority boundaries; avoid building replacements without an identified missing requirement.
 
 ## Open questions
