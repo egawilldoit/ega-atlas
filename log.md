@@ -35,3 +35,6 @@ Pass 1/5: verified open draft PRs #35–#37 and separated proposed write-safety/
 
 ## [2026-10-23] update | wiki/projects/gymtrack.md | ChatGPT
 Pass 2/5: verified draft MRs !111/!112 and the GYM-75 Done-label versus unapproved deletion-policy discrepancy. Kept irreversible deletion blocked pending explicit signoff, not inferred approval.
+
+## [2026-10-23] create | wiki/concepts/agent-runtime-vm.md | ChatGPT
+Pass 3/5: preserved reusable verified VM workflow: gated heavy commands, dated toolchain facts, worktree/disk hygiene and ephemeral auth limits; linked it from the concept index and agent workflow. No secrets or precise host identifiers recorded.

@@ -20,6 +20,8 @@ Shared operating defaults reconstructed from accessible conversations and curren
 - **Keep it lean.** Prefer existing free/simple tools; resist scope creep. Use the VM's verified `heavy -- <command>` guard for installs/builds/heavy checks when its wrapper is available, avoiding competing expensive jobs. Don't assume it exists on another machine.
 - **Finish with state.** After changing code, decisions or status, update the existing Atlas page, check `now.md` and `index.md`, append `log.md`, and commit. No raw agent dumps or private credentials in public docs.
 
+- **Shared execution machine.** For Ubuntu VM work, apply [Agent runtime VM](agent-runtime-vm.md) hygiene before cleanup, resource-intensive checks or authentication changes.
+
 ## Gotchas and lessons
 
 - Never call an untested implementation “done”; exercise the real path and its failure/authorization cases. Tests/CI may pass while credentials, browser behavior, migration state or tenant isolation remain unproven.
@@ -35,5 +37,6 @@ Shared operating defaults reconstructed from accessible conversations and curren
 ## Links
 
 - [Atlas agent contract](../../AGENTS.md)
+- [Agent runtime VM](agent-runtime-vm.md)
 - [Gymtrack](../projects/gymtrack.md), [Helm](../projects/helm.md), [EGA Skills](../projects/ega-skills.md), [EGA House](../projects/ega-house.md)
 - [Atlas update skill](../../.agents/skills/atlas-update/SKILL.md)
