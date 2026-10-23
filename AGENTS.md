@@ -79,7 +79,7 @@ Do not create new top-level folders or new `wiki/` subfolders. If something does
 | A document someone wrote (PRD, notes, transcript, article) | `raw/`, then ingest |
 | Finished, abandoned or parked for good | move to `wiki/archive/`, keep the frontmatter |
 | A ticket, a bug, a task | Linear. Link it, don't copy it |
-| A secret, password, contact, address or salary | Nowhere in this repo |
+| A secret, personal record, client material, private export or unpublished employer document | Nowhere in this public repo; retain only in its authorized private source |
 
 When unsure between two folders, pick the one that already has the closest page and link from the other.
 
@@ -136,7 +136,7 @@ Then the sections from its template in `templates/`. Keep every section, even if
 1. **Duplicating.** Creating `gymtrack-v2.md` or `helm-notes.md` next to an existing page. Search `index.md` and `wiki/` first; extend the page that exists.
 2. **Appending history.** Adding "Update 10/20: ..." to the bottom of a page. Rewrite the section so it reads as the current state; git keeps the old version.
 3. **Silently overwriting.** A new source or session contradicts a page. Don't just replace the fact: if the newer one is clearly right, update it and say why in `log.md`; if unsure, put both under Open questions with their sources.
-4. **Leaking.** This repo may be public. Never write secrets, tokens, passwords, keys, account IDs, phone numbers, emails, addresses, salaries or recruiter contacts. Write "stored in <tool>" instead.
+4. **Leaking.** This repository is **public** (checked 2026-10-23). Do not commit secrets, tokens, passwords, keys, account IDs, phone numbers, emails, addresses, salaries, recruiter contacts, customer/user data, private chat exports, unredacted runtime logs, employer/client proprietary code or unpublished internal documents. Summarize only approved, nonconfidential conclusions. Public links to private work are not permission to copy its contents. Never put sensitive originals in `raw/`; keep them in their authorized private location. If classification is unclear, do not ingest or commit.
 
 ## Touch every place
 

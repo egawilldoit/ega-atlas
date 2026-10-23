@@ -47,3 +47,6 @@ Pass 5/5: verified 8 wiki pages against index, required frontmatter, template se
 
 ## [2026-10-23] update | wiki/projects/gymtrack.md, now.md | ChatGPT
 New audit: MR !111 merged at 08:15 UTC and GYM-84 is Done; MR !112 remains a draft. Corrected stale unmerged assertions and next merge dependency; runtime QA remains unproven.
+
+## [2026-10-23] schema | AGENTS.md, atlas-ingest | ChatGPT
+Expanded public-repository safety policy to exclude proprietary employer/client information, private chat exports and unredacted logs. Moved intake classification before source movement/commit; no confidential source material was added.
