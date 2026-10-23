@@ -23,6 +23,17 @@ Tell me plainly when something is stuck, drifting, or contradicts what I decided
 
 These instructions are good defaults, not hard rules. What I say in the session wins.
 
+## Working defaults (reviewed 2026-10-23)
+
+Use [Agent delivery workflow](wiki/concepts/agent-delivery-workflow.md) for cross-project operating defaults. In brief:
+
+- Get fresh repo/issue state before coding. Ship one bounded outcome on an isolated branch/worktree; avoid scope creep and needless tools.
+- No subagents by default. A request can opt in per execution with its chosen model.
+- Separate code, review, merge, DEV delivery, actual browser/runtime acceptance and Production acceptance. Report precise evidence; an agent saying "done" is not proof.
+- Prepare PRs/MRs without automatic merge or external production/resource changes, unless explicitly authorized for that project and operation.
+- Preserve secrets, existing architecture and the current DB migration protocol. On the Ubuntu VM, use its `heavy` guard for competing costly commands when installed.
+- Treat old chat recollections as leads; current Linear, Git and runtime evidence control the state. Historical chat retrieval is not exhaustive.
+
 ## Glossary
 
 - **you**: the agent reading this file.

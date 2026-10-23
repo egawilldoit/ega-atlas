@@ -1,26 +1,27 @@
 ---
 type: now
-updated: 2026-10-20
+updated: 2026-10-23
 ---
 
 # Now
 
-What matters this week. Agents read this first. Keep it under ~300 words and rewrite it, don't append.
+What matters this week. Read this first; project and issue links provide the details.
 
 ## Priorities (in order)
 
-1. **Full-time job.** DevOps/Cloud first, then CRM (SAP, Salesforce). Rabat or Casablanca. Goal: 5 applications per day. See [Job hunt](wiki/areas/job-hunt.md).
-2. **Gymtrack.** MVP Sprint 2: onboarding, auth, custom RBAC. See [Gymtrack](wiki/projects/gymtrack.md).
-3. **Helm** and **EGA Skills**. See [Helm](wiki/projects/helm.md), [EGA Skills](wiki/projects/ega-skills.md).
+1. **Full-time job.** DevOps/Cloud first, then CRM (SAP, Salesforce); Rabat/Casablanca. Working target: five applications per day. See [Job hunt](wiki/areas/job-hunt.md).
+2. **Gymtrack.** Finish Sprint 2 onboarding/staff/RBAC and certify actual hosted DEV behavior. See [Gymtrack](wiki/projects/gymtrack.md).
+3. **Helm, then EGA Skills.** Complete Helm v0.2's DEV workflow without promoting Production; finish EGA Skills release/console acceptance before declaring stable. See [Helm](wiki/projects/helm.md) and [EGA Skills](wiki/projects/ega-skills.md).
 
-Everything else is parked unless I say otherwise.
+Other projects, including EGA House, stay parked for prioritization unless explicitly resumed.
 
 ## Active work
 
-- Gymtrack: permission issues in progress (GYM-90, GYM-91, GYM-77). Watch for two agents on the same branch.
-- Helm: next steps to define.
-- EGA Skills: aim for a stable version this week.
+- **Gymtrack:** [GYM-83](https://linear.app/egawilldoit/issue/GYM-83), [GYM-84](https://linear.app/egawilldoit/issue/GYM-84), [GYM-88](https://linear.app/egawilldoit/issue/GYM-88) In Progress. [GYM-72](https://linear.app/egawilldoit/issue/GYM-72) Done; [GYM-96](https://linear.app/egawilldoit/issue/GYM-96) is the remaining setup-only access gap. GYM-86/89 Todo.
+- **Helm:** DEV `develop` integrated, but live Linear OAuth, the issue ExecutePanel, isolated DEV acceptance and full Linear → T3 → PR proof remain. Production held.
+- **EGA Skills:** 2.0 candidate; Production console deployed, but owner sign-in/authorization acceptance and remaining release gates are not certified.
 
 ## Watch out
 
-- Atlas pages are still sparse starters. Fill them as real work happens; don't invent content.
+- These are current checkpoints, not claims that all work is delivered. Linear owns ticket state, Git owns code, real runtime evidence owns acceptance.
+- Source material is incomplete: the October 23 context backfill did **not** inspect 1,000 full chat transcripts. Do not fabricate missing decisions or treat old statuses as current.

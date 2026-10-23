@@ -17,3 +17,12 @@ Rewrote rules: principles, note from Abdelilah, glossary, failure modes, touch-e
 
 ## [2026-10-20] schema | structure | Hark
 Restructured: now.md, wiki/{projects,areas,concepts,decisions,archive}, raw/{inbox,assets}, templates/, frontmatter on every page, grep-able log. See wiki/decisions/0001-atlas-structure.md.
+
+## [2026-10-23] update | now.md, project and area pages | ChatGPT
+Backfilled verified October 23 project status, role/DEV blockers, priorities and career context from Atlas, current GitHub/GitLab/Linear and accessible chat context. Marked DEV vs product acceptance distinctly; bulk 1,000-chat coverage not claimed.
+
+## [2026-10-23] create | wiki/projects/ega-house.md, wiki/concepts/agent-delivery-workflow.md | ChatGPT
+Preserved EGA House as parked and distilled durable cross-project agent defaults without duplicating tickets or secret-bearing source material.
+
+## [2026-10-23] schema | AGENTS.md, index.md | ChatGPT
+Linked the reusable delivery workflow into the Atlas contract and index; no folder or template layout changes.
