@@ -65,3 +65,6 @@ Linked the canonical versioned VM updater and warned that native T3 updates can 
 
 ## [2026-10-23] schema | AGENTS.md | ChatGPT
 Corrected multi-forge source-of-truth guidance: Gymtrack code lives in GitLab while Helm/EGA Skills live in GitHub. Atlas remains a dated context layer rather than a code or live-issue authority.
+
+## [2026-10-23] lint | all | ChatGPT
+Validated 11 wiki pages, 3 decisions, index coverage, required frontmatter/sections, relative links and related-page references after portfolio/decision/tooling updates. now.md has 224 words; no mechanical link issues or credential-pattern matches detected. Live deployment and historical chat completeness are outside this lint.
