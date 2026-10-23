@@ -26,3 +26,6 @@ Preserved EGA House as parked and distilled durable cross-project agent defaults
 
 ## [2026-10-23] schema | AGENTS.md, index.md | ChatGPT
 Linked the reusable delivery workflow into the Atlas contract and index; no folder or template layout changes.
+
+## [2026-10-23] lint | all | ChatGPT
+Verified 7 wiki pages against index, required frontmatter, template sections, relative links and related references; now.md is 212 words. No mechanical issues found. Full source freshness and 1,000-chat coverage were not certified.
