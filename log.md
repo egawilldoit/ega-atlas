@@ -56,3 +56,6 @@ New audit: clarified Atlas/EGA Skills/Linear/T3/Helm authority chain, distinguis
 
 ## [2026-10-23] create | wiki/areas/engineering-portfolio.md | ChatGPT
 Reviewed secondary repositories (Token Observatory, VM Updates Scripts, ShipLoop, Hermes Mobile, Back15 and older quota tracker). Added a source-linked non-priority inventory rather than manufacturing active project states; linked from now/index. No deployment claims or confidential sources.
+
+## [2026-10-23] decision | wiki/decisions/0002-native-t3-execution-ownership.md, wiki/decisions/0003-gymtrack-shared-dev-migrations.md | ChatGPT
+Promoted two source-backed lasting architecture choices into short accepted decisions. Linked Helm, Gymtrack, workflow and index; did not claim live delivery acceptance or execute migrations.

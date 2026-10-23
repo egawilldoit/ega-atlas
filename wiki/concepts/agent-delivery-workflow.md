@@ -31,7 +31,7 @@ Shared operating defaults reconstructed from accessible conversations and curren
 - Never call an untested implementation “done”; exercise the real path and its failure/authorization cases. Tests/CI may pass while credentials, browser behavior, migration state or tenant isolation remain unproven.
 - When diagnosing failed agent changes, classify **observation → hypothesis → first reproducible divergence → minimal fix → independent review → fresh runtime test**. Label the result **static**, **merged**, **runtime-proven** or **end-to-end-proven**; don't infer one from another. Capture only sanitized evidence in public Atlas.
 - Long polling/sleep loops, full test reruns and simultaneous VM builds waste execution time. Diagnose root cause, select focused checks, then run the relevant full gate once.
-- Shared DEV migration history is not a scratch database. Do not reset/replay applied migrations, casually apply branch SQL, or confuse DB readiness with app acceptance.
+- Shared DEV migration history is not a scratch database. See [Decision 0003](../decisions/0003-gymtrack-shared-dev-migrations.md); do not reset/replay applied SQL, casually apply branch SQL, or confuse DB readiness with app acceptance.
 - Approval policy has varied by project and date in older conversations. Use the latest explicit task/project policy rather than promoting an old one to a universal rule.
 
 ## Open questions

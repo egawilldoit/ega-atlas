@@ -2,7 +2,7 @@
 type: project
 status: active
 updated: 2026-10-23
-related: [helm, agent-delivery-workflow]
+related: [helm, agent-delivery-workflow, 0003-gymtrack-shared-dev-migrations]
 ---
 
 # Gymtrack
@@ -24,7 +24,7 @@ Multi-tenant gym-management SaaS built with two teammates. Finish Sprint 2 onboa
 - D6/D7: established staff keep authorized historical read access when suspended; new provisioning users only receive setup/credential/status/recovery access. The latter still needs GYM-96 enforcement.
 - Application rejection: no automatic rejection email, no reopen/reverse; resubmission follows duplicate rules. See [GYM-72](https://linear.app/egawilldoit/issue/GYM-72).
 - Custom RBAC must enforce **live** role/site permissions (including existing JWTs); separation between role edit [GYM-84](https://linear.app/egawilldoit/issue/GYM-84) and individual assignment [GYM-89](https://linear.app/egawilldoit/issue/GYM-89).
-- Shared DEV database: migrations are append-only, apply through the authorized delivery protocol; never reset or replay historical migrations. Actual DB delivery is not functional QA.
+- Shared DEV: one applied-but-unmerged candidate at a time, guarded receipts and forward-fix only. See [Decision 0003](../decisions/0003-gymtrack-shared-dev-migrations.md); database readiness is not functional acceptance.
 
 ## Open questions
 
