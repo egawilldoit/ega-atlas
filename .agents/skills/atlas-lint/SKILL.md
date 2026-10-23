@@ -10,7 +10,7 @@ description: Use weekly or when asked to health-check EGA ATLAS. Finds broken li
    1. **Index**: every file in `wiki/` (except `.gitkeep`) is in `index.md` under the right section, with the right status; every listed page exists.
    2. **Frontmatter**: every page has `type`, `status`, `updated`, `related`, and `type` matches its folder.
    3. **Template**: every page has its template's sections.
-   4. **Links**: relative links resolve from the file's own folder; `related` names point to real files.
+   4. **Links**: relative links resolve from the file's own folder; `related` names point to real files. When checking Markdown links, ignore link-looking text inside fenced code blocks or inline backticks (examples are not active links).
    5. **Orphans**: pages nothing links to; link them from a related page.
    6. **now.md**: under ~300 words, `updated` within 7 days, priorities match the pages' `status`.
    7. **Staleness**: active pages with `updated` older than 14 days and open Next steps.

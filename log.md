@@ -41,3 +41,6 @@ Pass 3/5: preserved reusable verified VM workflow: gated heavy commands, dated t
 
 ## [2026-10-23] update | wiki/projects/ega-skills.md, now.md | ChatGPT
 Pass 4/5: distinguished the published v2.0.0 GitHub Release from current 2.0.1 package and stale README “candidate” wording. Kept browser authorization and promoted-artifact acceptance unresolved.
+
+## [2026-10-23] lint | all | ChatGPT
+Pass 5/5: verified 8 wiki pages against index, required frontmatter, template sections, relative links and related references; now.md 217 words. Refined lint guidance to exclude code examples from link checks. Added concise communication, bounded-verification, Friday review and executable-agent-prompt preferences. No mechanical errors; full 1,000-chat history still unavailable.
