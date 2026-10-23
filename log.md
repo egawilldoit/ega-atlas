@@ -38,3 +38,6 @@ Pass 2/5: verified draft MRs !111/!112 and the GYM-75 Done-label versus unapprov
 
 ## [2026-10-23] create | wiki/concepts/agent-runtime-vm.md | ChatGPT
 Pass 3/5: preserved reusable verified VM workflow: gated heavy commands, dated toolchain facts, worktree/disk hygiene and ephemeral auth limits; linked it from the concept index and agent workflow. No secrets or precise host identifiers recorded.
+
+## [2026-10-23] update | wiki/projects/ega-skills.md, now.md | ChatGPT
+Pass 4/5: distinguished the published v2.0.0 GitHub Release from current 2.0.1 package and stale README “candidate” wording. Kept browser authorization and promoted-artifact acceptance unresolved.
