@@ -5,7 +5,7 @@ updated: 2026-10-23
 
 # Now
 
-What matters this week. Read this first; project and issue links provide the details.
+What matters this week. Snapshot checked 2026-10-23; refresh live issue/PR status before acting.
 
 ## Priorities (in order)
 
@@ -17,7 +17,7 @@ Other projects, including EGA House, stay parked for prioritization unless expli
 
 ## Active work
 
-- **Gymtrack:** [GYM-83](https://linear.app/egawilldoit/issue/GYM-83), [GYM-84](https://linear.app/egawilldoit/issue/GYM-84), [GYM-88](https://linear.app/egawilldoit/issue/GYM-88) In Progress. [GYM-72](https://linear.app/egawilldoit/issue/GYM-72) Done; [GYM-96](https://linear.app/egawilldoit/issue/GYM-96) is the remaining setup-only access gap. GYM-86/89 Todo.
+- **Gymtrack:** GYM-84 merged/Done ([MR !111](https://gitlab.com/trackgym101/gymsas/-/merge_requests/111)); [GYM-83](https://linear.app/egawilldoit/issue/GYM-83) remains a draft; [GYM-88](https://linear.app/egawilldoit/issue/GYM-88) functional QA In Progress. GYM-96 setup-only gap Todo; GYM-86/89 Todo.
 - **Helm:** `develop` v0.2 baseline is not full acceptance. Draft PRs #35–#37 are **unmerged**; Linear OAuth, issue execution, isolated DEV acceptance and Linear → T3 → PR proof remain. Production held.
 - **EGA Skills:** v2.0.0 published; main package 2.0.1. Production console deployed, but owner sign-in/authorization and release-version reconciliation remain open.
 

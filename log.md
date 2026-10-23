@@ -44,3 +44,6 @@ Pass 4/5: distinguished the published v2.0.0 GitHub Release from current 2.0.1 p
 
 ## [2026-10-23] lint | all | ChatGPT
 Pass 5/5: verified 8 wiki pages against index, required frontmatter, template sections, relative links and related references; now.md 217 words. Refined lint guidance to exclude code examples from link checks. Added concise communication, bounded-verification, Friday review and executable-agent-prompt preferences. No mechanical errors; full 1,000-chat history still unavailable.
+
+## [2026-10-23] update | wiki/projects/gymtrack.md, now.md | ChatGPT
+New audit: MR !111 merged at 08:15 UTC and GYM-84 is Done; MR !112 remains a draft. Corrected stale unmerged assertions and next merge dependency; runtime QA remains unproven.

@@ -15,7 +15,8 @@ Multi-tenant gym-management SaaS built with two teammates. Finish Sprint 2 onboa
 - Sprint 2 Book a Demo, Platform Admin review, Owner provisioning/credentials/first site, foundational custom roles and several domain permission checks are recorded Done in [Linear GYM](https://linear.app/egawilldoit/team/GYM). Done/merged does not certify hosted behavior.
 - [GYM-72](https://linear.app/egawilldoit/issue/GYM-72) lifecycle *design* reconciliation is Done (merged [MR !110](https://gitlab.com/trackgym101/gymsas/-/merge_requests/110)); a separate setup-only access implementation remains [GYM-96](https://linear.app/egawilldoit/issue/GYM-96) Todo.
 - [GYM-88](https://linear.app/egawilldoit/issue/GYM-88) records four additional migrations applied to shared DEV on 2026-10-23 and DB readiness passed. Functional Auth/mail/browser, multi-tenant/RBAC and full end-to-end QA remain **not accepted**.
-- [GYM-83](https://linear.app/egawilldoit/issue/GYM-83) staff creation (draft [MR !112](https://gitlab.com/trackgym101/gymsas/-/merge_requests/112)) and [GYM-84](https://linear.app/egawilldoit/issue/GYM-84) role-impact preview/edit (draft [MR !111](https://gitlab.com/trackgym101/gymsas/-/merge_requests/111)): In Progress as of 2026-10-23. **Neither MR was merged** at this check; “mergeable” alone does not mean approved/reviewed or hosted accepted. [GYM-89](https://linear.app/egawilldoit/issue/GYM-89) staff role/sites reassignment and [GYM-86](https://linear.app/egawilldoit/issue/GYM-86) permanent deletion: Todo.
+- [GYM-84](https://linear.app/egawilldoit/issue/GYM-84) role-impact preview/edit is **Done** and [MR !111](https://gitlab.com/trackgym101/gymsas/-/merge_requests/111) **merged** at 2026-10-23 08:15 UTC into `develop` (`4773f44a`). This is merged code, not hosted functional acceptance.
+- [GYM-83](https://linear.app/egawilldoit/issue/GYM-83) staff creation remains **In Progress** with open draft [MR !112](https://gitlab.com/trackgym101/gymsas/-/merge_requests/112) (observed head `8efb8a66`). [GYM-89](https://linear.app/egawilldoit/issue/GYM-89) staff role/sites reassignment and [GYM-86](https://linear.app/egawilldoit/issue/GYM-86) permanent deletion: Todo.
 
 ## Decisions
 
@@ -32,7 +33,7 @@ Multi-tenant gym-management SaaS built with two teammates. Finish Sprint 2 onboa
 
 ## Next steps
 
-1. Review draft MRs !112 (GYM-83) and !111 (GYM-84), check their actual heads and dependencies, and merge only after the required gates and authorization.
+1. Rebase/revalidate draft MR !112 (GYM-83) against `develop` after merged GYM-84; review the exact updated head and accept only after required gates and authorization.
 2. Implement GYM-96 setup-only access with negative tests.
 3. Complete GYM-88 hosted functional QA and attach actual runtime evidence.
 4. Reconcile GYM-86 policy approval; then take GYM-89/86 in dependency order.
