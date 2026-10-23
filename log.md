@@ -29,3 +29,6 @@ Linked the reusable delivery workflow into the Atlas contract and index; no fold
 
 ## [2026-10-23] lint | all | ChatGPT
 Verified 7 wiki pages against index, required frontmatter, template sections, relative links and related references; now.md is 212 words. No mechanical issues found. Full source freshness and 1,000-chat coverage were not certified.
+
+## [2026-10-23] update | wiki/projects/helm.md, now.md | ChatGPT
+Pass 1/5: verified open draft PRs #35–#37 and separated proposed write-safety/issue UI/docs from merged develop or hosted acceptance; revised current next steps.

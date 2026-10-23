@@ -18,7 +18,7 @@ Other projects, including EGA House, stay parked for prioritization unless expli
 ## Active work
 
 - **Gymtrack:** [GYM-83](https://linear.app/egawilldoit/issue/GYM-83), [GYM-84](https://linear.app/egawilldoit/issue/GYM-84), [GYM-88](https://linear.app/egawilldoit/issue/GYM-88) In Progress. [GYM-72](https://linear.app/egawilldoit/issue/GYM-72) Done; [GYM-96](https://linear.app/egawilldoit/issue/GYM-96) is the remaining setup-only access gap. GYM-86/89 Todo.
-- **Helm:** DEV `develop` integrated, but live Linear OAuth, the issue ExecutePanel, isolated DEV acceptance and full Linear → T3 → PR proof remain. Production held.
+- **Helm:** `develop` v0.2 baseline is not full acceptance. Draft PRs #35–#37 are **unmerged**; Linear OAuth, issue execution, isolated DEV acceptance and Linear → T3 → PR proof remain. Production held.
 - **EGA Skills:** 2.0 candidate; Production console deployed, but owner sign-in/authorization acceptance and remaining release gates are not certified.
 
 ## Watch out
