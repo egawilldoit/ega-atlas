@@ -6,10 +6,10 @@ Start with [now.md](now.md). Every wiki page is listed here once.
 
 | Page | Status | Summary |
 |---|---|---|
-| [Gymtrack](wiki/projects/gymtrack.md) | active | Gym-management SaaS; Sprint 2 staff/RBAC and hosted DEV acceptance |
-| [Helm](wiki/projects/helm.md) | active | Owner control plane for native T3 Code work; v0.2 DEV workflow, Production held |
+| [Gymtrack](wiki/projects/gymtrack.md) | active | Gym-management SaaS; staff/RBAC merged, hosted DEV functional acceptance open |
+| [Helm](wiki/projects/helm.md) | active | Native T3 control plane; v0.2 DEV frontend deployed, Production v0.1 patched, acceptance open |
 | [EGA Skills](wiki/projects/ega-skills.md) | active | Governed agent-skill registry; 2.0 release and console acceptance |
-| [EGA House](wiki/projects/ega-house.md) | parked | Productivity platform; maintain context, do not displace current priorities |
+| [EGA House](wiki/projects/ega-house.md) | active | Productivity platform; W0–W3 UX upgrade planned, delivery not prioritized |
 
 ## Areas
 

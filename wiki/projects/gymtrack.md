@@ -1,45 +1,44 @@
 ---
 type: project
 status: active
-updated: 2026-10-23
+updated: 2026-10-25
 related: [helm, agent-delivery-workflow, 0003-gymtrack-shared-dev-migrations]
 ---
 
 # Gymtrack
 
-Multi-tenant gym-management SaaS built with two teammates. Finish Sprint 2 onboarding, staff and custom RBAC; prove the complete first-Owner journey in hosted DEV.
+Multi-tenant gym-management SaaS. Current delivery goal: certify Sprint 2 onboarding, staff and live RBAC in hosted DEV without confusing code merge with functional acceptance.
 
 ## Current state
 
-- Canonical code: private [GitLab trackgym101/gymsas](https://gitlab.com/trackgym101/gymsas), Next.js web + NestJS API + Supabase/Auth. The active integration target is protected `develop`, even though GitLab's repository default remains older `main`. Fetch current `develop` before any implementation.
-- Sprint 2 Book a Demo, Platform Admin review, Owner provisioning/credentials/first site, foundational custom roles and several domain permission checks are recorded Done in [Linear GYM](https://linear.app/egawilldoit/team/GYM). Done/merged does not certify hosted behavior.
-- [GYM-72](https://linear.app/egawilldoit/issue/GYM-72) lifecycle *design* reconciliation is Done (merged [MR !110](https://gitlab.com/trackgym101/gymsas/-/merge_requests/110)); a separate setup-only access implementation remains [GYM-96](https://linear.app/egawilldoit/issue/GYM-96) Todo.
-- [GYM-88](https://linear.app/egawilldoit/issue/GYM-88) records four additional migrations applied to shared DEV on 2026-10-23 and DB readiness passed. Functional Auth/mail/browser, multi-tenant/RBAC and full end-to-end QA remain **not accepted**.
-- [GYM-84](https://linear.app/egawilldoit/issue/GYM-84) role-impact preview/edit is **Done** and [MR !111](https://gitlab.com/trackgym101/gymsas/-/merge_requests/111) **merged** at 2026-10-23 08:15 UTC into `develop` (`4773f44a`). This is merged code, not hosted functional acceptance.
-- [GYM-83](https://linear.app/egawilldoit/issue/GYM-83) staff creation remains **In Progress** with open draft [MR !112](https://gitlab.com/trackgym101/gymsas/-/merge_requests/112) (observed head `8efb8a66`). [GYM-89](https://linear.app/egawilldoit/issue/GYM-89) staff role/sites reassignment and [GYM-86](https://linear.app/egawilldoit/issue/GYM-86) permanent deletion: Todo.
+- Canonical code is private [GitLab trackgym101/gymsas](https://gitlab.com/trackgym101/gymsas); protected integration branch is `develop`, not the repository's older default `main`. Checked `develop@38812749` on 2026-10-25.
+- Staff creation [GYM-83](https://linear.app/egawilldoit/issue/GYM-83) merged via [MR !112](https://gitlab.com/trackgym101/gymsas/-/merge_requests/112) on 2026-10-23. Role/site reassignment [GYM-89](https://linear.app/egawilldoit/issue/GYM-89) merged via [MR !113](https://gitlab.com/trackgym101/gymsas/-/merge_requests/113) the same day. Both are Done in Linear. Follow-up repair [MR !115](https://gitlab.com/trackgym101/gymsas/-/merge_requests/115) merged 2026-10-24. **These are merged code states, not hosted acceptance.**
+- Provisioning setup-only authorization [GYM-96](https://linear.app/egawilldoit/issue/GYM-96) is Done; [MR !116](https://gitlab.com/trackgym101/gymsas/-/merge_requests/116) merged into `develop` 2026-10-25. It closes the earlier D6 implementation gap at code level; runtime negative cases remain part of acceptance.
+- [GYM-84](https://linear.app/egawilldoit/issue/GYM-84) role-impact editing was previously merged in [MR !111](https://gitlab.com/trackgym101/gymsas/-/merge_requests/111). Earlier Book a Demo, approval, credential and first-site paths are also recorded Done in Linear; no end-to-end hosted verdict follows from those labels.
+- [GYM-88](https://linear.app/egawilldoit/issue/GYM-88) remains **In Progress**. Its 2026-10-23 shared DEV migration delivery and database readiness passed, but live Auth/mail/browser, multi-tenant and RBAC end-to-end checks are **not accepted**.
+- Local QA preparation [GYM-95](https://linear.app/egawilldoit/issue/GYM-95) is In Progress with **draft** [MR !117](https://gitlab.com/trackgym101/gymsas/-/merge_requests/117). Operator bootstrap [GYM-14](https://linear.app/egawilldoit/issue/GYM-14) is In Progress with **draft** [MR !119](https://gitlab.com/trackgym101/gymsas/-/merge_requests/119). Neither draft is merged or permission to execute provider operations.
+- [GYM-86](https://linear.app/egawilldoit/issue/GYM-86) permanent staff deletion remains **Todo / blocked** by missing policy approval.
 
 ## Decisions
 
-- Visitor onboarding is **Book a Demo**, not open public signup. Platform Admin reviews applications; an approved Owner completes credential change then creates the first site. Exactly one protected Owner in Sprint 2; no ownership transfer.
-- D6/D7: established staff keep authorized historical read access when suspended; new provisioning users only receive setup/credential/status/recovery access. The latter still needs GYM-96 enforcement.
-- Application rejection: no automatic rejection email, no reopen/reverse; resubmission follows duplicate rules. See [GYM-72](https://linear.app/egawilldoit/issue/GYM-72).
-- Custom RBAC must enforce **live** role/site permissions (including existing JWTs); separation between role edit [GYM-84](https://linear.app/egawilldoit/issue/GYM-84) and individual assignment [GYM-89](https://linear.app/egawilldoit/issue/GYM-89).
-- Shared DEV: one applied-but-unmerged candidate at a time, guarded receipts and forward-fix only. See [Decision 0003](../decisions/0003-gymtrack-shared-dev-migrations.md); database readiness is not functional acceptance.
+- Visitor onboarding uses **Book a Demo**, Platform Admin review, approved Owner credential change and first-site setup; no open public signup. One protected Owner; no ownership transfer in Sprint 2.
+- D6/D7: new provisioning users have setup/credential/status/recovery access only; established staff retain authorized historical reads for suspended gyms. Verify live JWT and tenant boundaries, including after password change.
+- Role/site assignments and effective custom RBAC are live authorization decisions, not stale JWT claims. Role definition changes and individual reassignment are distinct operations.
+- Shared Supabase DEV migrations are serialized, checksummed and forward-fix only. See [Decision 0003](../decisions/0003-gymtrack-shared-dev-migrations.md); database readiness is not functional acceptance.
 
 ## Open questions
 
-- [GYM-75](https://linear.app/egawilldoit/issue/GYM-75) has status **Done**, but the issue description (last substantive design record) still explicitly says product/privacy signoff is **missing** for retention, anonymization, cross-gym identity and irreversible deletion. This is a **status/evidence conflict**, not approval. [GYM-86](https://linear.app/egawilldoit/issue/GYM-86) stays blocked until explicit policy signoff is linked; do not implement irreversible deletion from the Done label.
-- Which end-to-end hosted DEV Auth/mail/browser scenarios have live evidence, beyond database migration readiness? [GYM-88](https://linear.app/egawilldoit/issue/GYM-88) remains open.
+- [GYM-75](https://linear.app/egawilldoit/issue/GYM-75) is marked **Done**, but its description explicitly says retention, anonymization, cross-gym identity and irreversible deletion need product/privacy approval; [GYM-86](https://linear.app/egawilldoit/issue/GYM-86) also names this hard prerequisite. **Do not infer signoff from the status.**
+- Which exact hosted DEV owner/staff/Auth/mail/browser and negative authorization scenarios have passed on the current deployed application/API/DB identities? GYM-88 is still open.
+- What evidence and approval will promote the GYM-95 preparation harness and GYM-14 bootstrap command from reviewed code to safe operational use?
 
 ## Next steps
 
-1. Rebase/revalidate draft MR !112 (GYM-83) against `develop` after merged GYM-84; review the exact updated head and accept only after required gates and authorization.
-2. Implement GYM-96 setup-only access with negative tests.
-3. Complete GYM-88 hosted functional QA and attach actual runtime evidence.
-4. Reconcile GYM-86 policy approval; then take GYM-89/86 in dependency order.
+1. Complete independent exact-head review/CI for draft !117 and !119; merge only through normal authorized GitLab process. Do not run real bootstrap or provider calls as part of review.
+2. Run separately authorized GYM-88 hosted DEV journeys with synthetic identities; capture sanitized real evidence for setup-only denial, credential changes, staff role/site updates and tenant isolation.
+3. Resolve GYM-75 policy contradiction with explicit approval before starting GYM-86 deletion implementation.
 
 ## Links
 
-- [Canonical GitLab repository](https://gitlab.com/trackgym101/gymsas)
-- [Linear GYM issues](https://linear.app/egawilldoit/team/GYM)
-- Related: [Helm](helm.md), [Agent delivery workflow](../concepts/agent-delivery-workflow.md)
+- [Canonical GitLab repository](https://gitlab.com/trackgym101/gymsas) · [Linear GYM](https://linear.app/egawilldoit/team/GYM)
+- [Helm](helm.md) · [Agent delivery workflow](../concepts/agent-delivery-workflow.md)

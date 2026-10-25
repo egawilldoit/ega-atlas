@@ -1,7 +1,7 @@
 ---
 type: concept
 status: active
-updated: 2026-10-23
+updated: 2026-10-25
 related: [gymtrack, helm, ega-skills, ega-house, agent-delivery-workflow, engineering-portfolio]
 ---
 
@@ -13,7 +13,7 @@ One shared Ubuntu machine supports coding-agent sessions, native T3/OpenCode wor
 
 - Identify the machine, repository and current working tree before a command. Recheck `git status`, branch, remote and active agents; fetch/pull the correct integration branch before work. Separate repositories and account identities explicitly.
 - On the VM, the `heavy -- <command>` wrapper was locally validated for guarding concurrent installs/builds/heavy checks (2026-10-22). Use it when available; it **serializes resource-intensive jobs, not accelerates them**. Verify presence before relying on it.
-- Node used `nvm` and reported `v24.18.0` on 2026-10-22; this is a dated observation, not a permanent pin for all projects. Follow each repository's toolchain contract.
+- Node uses `nvm`. A 2026-10-24 owner execution report records an additive install of `v24.22.1`, global CLI parity and an updated default alias, replacing the earlier observed `v24.18.0` default. This is **reported**, not a live VM recheck; verify active shell/service Node versions and each repository's toolchain contract before acting.
 - Canonical source for the custom VM **`update`** wrapper is [VM Updates Scripts](https://github.com/egawilldoit/vm-updates-scripts) (`scripts/update.src.sh`), not the installed `~/bin/update` runtime copy. That repository's README covers its locking, preflight and nonmutating `--verify`/`--dry-run` options. Verify the active installed version before relying on its source contract.
 - Record only whether credentials are configured, where the **approved** secret store is, and how to verify authentication without exposing values. Shell `export` is session-scoped; do not assume it persists for other agents or restarts.
 

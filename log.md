@@ -71,3 +71,9 @@ Validated 11 wiki pages, 3 decisions, index coverage, required frontmatter/secti
 
 ## [2026-10-23] update | wiki/projects/helm.md, now.md | ChatGPT
 Re-verified Helm develop/main, DEV/Production Vercel, the five latest draft PR heads/checks, Linear issues and October Next.js advisories. Replaced the Helm handoff with code-vs-live R01–R12 gates, isolated native-write safety, owner actions and security patch priority; updated now.md. No Helm merges or deployments.
+
+## [2026-10-25] update | now.md, gymtrack, helm, ega-house, agent-runtime-vm, index.md | ChatGPT
+Reconciled fresh GitHub/GitLab/Linear/Vercel evidence: Gymtrack staff/setup code merged but hosted QA open; Helm #35–#39 merged with DEV frontend and security-only v0.1 Production deployments; EGA House UX backlog planned but not implemented. Dated the owner-reported Node update without asserting live VM verification. No project code, provider state, credentials, migrations or releases changed.
+
+## [2026-10-25] lint | all | ChatGPT
+Checked all 11 wiki pages against index, frontmatter, template sections, relative links and related references; now.md stays under 300 words. No mechanical defects or secret-value disclosures identified in updated text. Live owner acceptance and complete deployment/backend verification remain outside documentation lint.
