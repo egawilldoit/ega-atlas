@@ -77,3 +77,6 @@ Reconciled fresh GitHub/GitLab/Linear/Vercel evidence: Gymtrack staff/setup code
 
 ## [2026-10-25] lint | all | ChatGPT
 Checked all 11 wiki pages against index, frontmatter, template sections, relative links and related references; now.md stays under 300 words. No mechanical defects or secret-value disclosures identified in updated text. Live owner acceptance and complete deployment/backend verification remain outside documentation lint.
+
+## [2026-10-26] create | wiki/concepts/time-management.md | ChatGPT
+Added a visual, source-linked synthesis of Video 01 (nine techniques, critical limitations, practical weekly experiment); indexed it without committing the original transcript. No priorities or project state changed.

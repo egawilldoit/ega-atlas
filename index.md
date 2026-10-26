@@ -25,6 +25,8 @@ Start with [now.md](now.md). Every wiki page is listed here once.
 | [Agent delivery workflow](wiki/concepts/agent-delivery-workflow.md) | Shared rules for coding agents, evidence, approvals, VM work and knowledge capture |
 | [Agent runtime VM](wiki/concepts/agent-runtime-vm.md) | Shared Ubuntu execution environment, resource/credential hygiene and worktree safety |
 
+| [Time management](wiki/concepts/time-management.md) | Priorities, real time costs, energy boundaries, simple execution; visual video lesson |
+
 ## Decisions
 
 | Page | Status | Summary |
