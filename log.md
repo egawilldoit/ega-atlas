@@ -80,3 +80,6 @@ Checked all 11 wiki pages against index, frontmatter, template sections, relativ
 
 ## [2026-10-26] create | wiki/concepts/time-management.md | ChatGPT
 Added a visual, source-linked synthesis of Video 01 (nine techniques, critical limitations, practical weekly experiment); indexed it without committing the original transcript. No priorities or project state changed.
+
+## [2026-10-26] update | wiki/concepts/time-management.md | ChatGPT
+Second-pass audit against full 2,401-word transcript: restored morning/café examples, two focus areas, the bedtime/social dilemma, distraction and backup examples, planning cadence, system overhead and source/interpretation boundaries. Repaired concept-index table formatting. No original transcript published.
