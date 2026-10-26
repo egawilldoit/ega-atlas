@@ -83,3 +83,6 @@ Added a visual, source-linked synthesis of Video 01 (nine techniques, critical l
 
 ## [2026-10-26] update | wiki/concepts/time-management.md | ChatGPT
 Second-pass audit against full 2,401-word transcript: restored morning/café examples, two focus areas, the bedtime/social dilemma, distraction and backup examples, planning cadence, system overhead and source/interpretation boundaries. Repaired concept-index table formatting. No original transcript published.
+
+## [2026-10-26] update | wiki/concepts/time-management.md | ChatGPT
+Third transcript audit: clarified burnout avoidance, optimization of low-value routines, secondary-goal waiting time, downstream decision costs, personal flexibility, automation and season-dependent simplicity. Added labeled editorial decision diagram; corrected the hypothetical two-hour productivity example. No other wiki pages or raw sources changed.
