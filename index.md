@@ -6,7 +6,7 @@ Start with [now.md](now.md). Every wiki page is listed here once.
 
 | Page | Status | Summary |
 |---|---|---|
-| [Gymtrack](wiki/projects/gymtrack.md) | active | Gym-management SaaS; staff/RBAC merged, hosted DEV functional acceptance open |
+| [Gymtrack](wiki/projects/gymtrack.md) | active | Sprint 2 accepted with deferred verification; delivery report and Sprint 3 carryover |
 | [Helm](wiki/projects/helm.md) | active | Native T3 control plane; v0.2 DEV frontend deployed, Production v0.1 patched, acceptance open |
 | [EGA Skills](wiki/projects/ega-skills.md) | active | Governed agent-skill registry; 2.0 release and console acceptance |
 | [EGA House](wiki/projects/ega-house.md) | active | Productivity platform; W0–W3 UX upgrade planned, delivery not prioritized |
@@ -33,6 +33,7 @@ Start with [now.md](now.md). Every wiki page is listed here once.
 | [0001 Atlas structure](wiki/decisions/0001-atlas-structure.md) | accepted | LLM Wiki layers + PARA-style wiki + now.md |
 | [0002 Native T3 execution](wiki/decisions/0002-native-t3-execution-ownership.md) | accepted | Helm coordinates T3; no second executor or auto-merge |
 | [0003 Shared DEV migrations](wiki/decisions/0003-gymtrack-shared-dev-migrations.md) | accepted | Serialized, auditable shared Supabase DEV SQL delivery |
+| [0004 Sprint 2 acceptance](wiki/decisions/0004-gymtrack-sprint-2-acceptance.md) | accepted | Close delivered scope; preserve verification and deletion debt in Sprint 3 |
 
 ## Archive
 

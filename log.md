@@ -86,3 +86,9 @@ Second-pass audit against full 2,401-word transcript: restored morning/café exa
 
 ## [2026-10-26] update | wiki/concepts/time-management.md | ChatGPT
 Third transcript audit: clarified burnout avoidance, optimization of low-value routines, secondary-goal waiting time, downstream decision costs, personal flexibility, automation and season-dependent simplicity. Added labeled editorial decision diagram; corrected the hypothetical two-hour productivity example. No other wiki pages or raw sources changed.
+
+## [2026-10-30] update | wiki/projects/gymtrack.md, now.md, index.md | ChatGPT
+Replaced the stale October 25 Gymtrack snapshot with the owner-requested Sprint 2 delivery report: shipped capabilities, permission contract, manual evidence boundaries, repair/delivery receipts and Sprint 3 carryover. Linear closure states were rechecked; provider/CI/database results are attributed to supplied reports, not fresh operational audits. No accounts, credentials, raw chats or logs published.
+
+## [2026-10-30] decision | wiki/decisions/0004-gymtrack-sprint-2-acceptance.md | ChatGPT
+Recorded the owner's explicit acceptance of delivered scope with deferred verification/deletion, superseding the earlier full-certification sprint-close boundary without claiming untested cases passed or authorizing Production.
