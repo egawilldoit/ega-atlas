@@ -8,7 +8,7 @@ Start with [now.md](now.md). Every wiki page is listed here once.
 |---|---|---|
 | [Gymtrack](wiki/projects/gymtrack.md) | active | Sprint 2 accepted with deferred verification; delivery report and Sprint 3 carryover |
 | [Helm](wiki/projects/helm.md) | active | Native T3 control plane; v0.2 DEV frontend deployed, Production v0.1 patched, acceptance open |
-| [EGA Skills](wiki/projects/ega-skills.md) | active | Governed agent-skill registry; 2.0 release and console acceptance |
+| [EGA Skills](wiki/projects/ega-skills.md) | active | 126-skill MCP live; automatic main releases verified; separate Console/client acceptance open |
 | [EGA House](wiki/projects/ega-house.md) | active | Productivity platform; W0–W3 UX upgrade planned, delivery not prioritized |
 
 ## Areas
@@ -34,6 +34,7 @@ Start with [now.md](now.md). Every wiki page is listed here once.
 | [0002 Native T3 execution](wiki/decisions/0002-native-t3-execution-ownership.md) | accepted | Helm coordinates T3; no second executor or auto-merge |
 | [0003 Shared DEV migrations](wiki/decisions/0003-gymtrack-shared-dev-migrations.md) | accepted | Serialized, auditable shared Supabase DEV SQL delivery |
 | [0004 Sprint 2 acceptance](wiki/decisions/0004-gymtrack-sprint-2-acceptance.md) | accepted | Close delivered scope; preserve verification and deletion debt in Sprint 3 |
+| [0005 EGA Skills automatic releases](wiki/decisions/0005-ega-skills-automatic-production-release.md) | accepted | Main code/catalog ship through Vercel Git + CI gate, live verification and guarded recovery |
 
 ## Archive
 

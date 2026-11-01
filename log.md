@@ -92,3 +92,9 @@ Replaced the stale October 25 Gymtrack snapshot with the owner-requested Sprint 
 
 ## [2026-10-30] decision | wiki/decisions/0004-gymtrack-sprint-2-acceptance.md | ChatGPT
 Recorded the owner's explicit acceptance of delivered scope with deferred verification/deletion, superseding the earlier full-certification sprint-close boundary without claiming untested cases passed or authorizing Production.
+
+## [2026-11-01] update | wiki/projects/ega-skills.md, now.md, index.md | Codex
+Recorded the delivered 126/TStack catalog, retired publisher scope, agent release handoff and #194 runbook alignment. Fresh Vercel/canonical and GitHub evidence confirms main source 1ddb2b6, readiness and production verification; separate Console/client acceptance remains unverified.
+
+## [2026-11-01] decision | wiki/decisions/0005-ega-skills-automatic-production-release.md | Codex
+Recorded the owner's native Git + exact-SHA CI gate release choice and same-commit code/catalog contract. #194 demonstrates a second automatic release; destructive recovery still needs a disposable live test. No credentials, account identifiers or raw session exports added.
