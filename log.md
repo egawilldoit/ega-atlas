@@ -104,3 +104,6 @@ Reconciled EGA House W0–W3 Done/merged, #336/#338 merged and #337/#339 open ag
 
 ## [2026-11-01] lint | all | ChatGPT
 Checked 14 wiki pages and index coverage, required frontmatter/template sections, local links and related references, page age, duplicate filenames, inbox and obvious secret/address patterns. All indexed once; no mechanical defects or stale pages found; now.md 274 words. Live runtime, Production acceptance and external link health are outside this documentation lint.
+
+## [2026-11-01] update | wiki/projects/ega-house.md, now.md, index.md | Codex
+Recorded #339 merged at 6b8d7092 with exact-SHA main CI success, persistent-shell/page repairs and CI optimization. Superseded the earlier open-shell snapshot; attributed Production/Dublin receipts to the supplied release report and manual acceptance to the owner. Kept excluded authenticated E2E and CPU measurement gaps explicit; corrected the notification-seed prerequisite. No project code, credentials or raw chat exports added.
