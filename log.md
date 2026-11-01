@@ -107,3 +107,6 @@ Checked 14 wiki pages and index coverage, required frontmatter/template sections
 
 ## [2026-11-01] update | wiki/projects/ega-house.md, now.md, index.md | Codex
 Recorded #339 merged at 6b8d7092 with exact-SHA main CI success, persistent-shell/page repairs and CI optimization. Superseded the earlier open-shell snapshot; attributed Production/Dublin receipts to the supplied release report and manual acceptance to the owner. Kept excluded authenticated E2E and CPU measurement gaps explicit; corrected the notification-seed prerequisite. No project code, credentials or raw chat exports added.
+
+## [2026-11-01] update | wiki/projects/ega-house.md, now.md, index.md | ChatGPT
+Follow-up to the concurrent #339 documentation commit: independently verified Vercel Production web and API READY/aliases at main@6b8d709. Corrected the reported all-Dublin claim: web deployment reports dub1, API reports iad1. Retained owner-reported manual acceptance and unrun authenticated E2E, database/latency and CPU measurements as separate gates. No service configuration changed.

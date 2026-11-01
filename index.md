@@ -9,7 +9,7 @@ Start with [now.md](now.md). Every wiki page is listed here once.
 | [Gymtrack](wiki/projects/gymtrack.md) | active | Sprint 2 accepted with deferred verification; delivery report and Sprint 3 carryover |
 | [Helm](wiki/projects/helm.md) | active | Native T3 control plane; v0.2 DEV frontend deployed, Production v0.1 patched, acceptance open |
 | [EGA Skills](wiki/projects/ega-skills.md) | active | 126-skill MCP live; automatic main releases verified; separate Console/client acceptance open |
-| [EGA House](wiki/projects/ega-house.md) | active | W0–W3 and persistent shell merged; main CI green, manual shell acceptance reported; E2E/CPU evidence open |
+| [EGA House](wiki/projects/ega-house.md) | active | W0–W3/shell merged; Production web dub1, API iad1; manual shell acceptance reported, E2E/CPU open |
 
 ## Areas
 
