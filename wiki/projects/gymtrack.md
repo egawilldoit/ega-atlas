@@ -1,7 +1,7 @@
 ---
 type: project
 status: active
-updated: 2026-10-30
+updated: 2026-11-01
 related: [helm, agent-delivery-workflow, 0003-gymtrack-shared-dev-migrations, 0004-gymtrack-sprint-2-acceptance]
 ---
 
@@ -14,6 +14,8 @@ Multi-tenant gym-management SaaS. Sprint 2 delivered application-led onboarding,
 [GYM-71 is Done](https://linear.app/egawilldoit/issue/GYM-71). This records owner acceptance of delivered scope, **not full hosted security certification or production readiness**. [Decision 0004](../decisions/0004-gymtrack-sprint-2-acceptance.md) explains the changed closure boundary.
 
 Canonical code: [GitLab trackgym101/gymsas](https://gitlab.com/trackgym101/gymsas), integration branch `develop`. The sprint was exercised on [DEV web](https://dev.gymtrack.space) and [DEV API](https://api-dev.gymtrack.space). Project remains active.
+
+Separate observability track (checked 2026-11-01): [GYM-47](https://linear.app/egawilldoit/issue/GYM-47) is Done and its opt-in NestJS Observe instrumentation merged to GitLab `develop@d0ecb46862566f8e4316d3a6f58cfd624f3f1008` on 2026-10-30. [GYM-48](https://linear.app/egawilldoit/issue/GYM-48) config delivery, [GYM-49](https://linear.app/egawilldoit/issue/GYM-49) hosted DEV privacy/trace acceptance and [GYM-50](https://linear.app/egawilldoit/issue/GYM-50) Production enablement remain Backlog. Merge does **not** establish enabled DEV tracing, accepted privacy behavior or Production activation.
 
 ### What Sprint 2 shipped
 

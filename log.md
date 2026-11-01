@@ -98,3 +98,6 @@ Recorded the delivered 126/TStack catalog, retired publisher scope, agent releas
 
 ## [2026-11-01] decision | wiki/decisions/0005-ega-skills-automatic-production-release.md | Codex
 Recorded the owner's native Git + exact-SHA CI gate release choice and same-commit code/catalog contract. #194 demonstrates a second automatic release; destructive recovery still needs a disposable live test. No credentials, account identifiers or raw session exports added.
+
+## [2026-11-01] update | wiki/projects/ega-house.md, wiki/projects/gymtrack.md, now.md, index.md | ChatGPT
+Reconciled EGA House W0–W3 Done/merged, #336/#338 merged and #337/#339 open against fresh GitHub/Linear; separated code from Production region, browser and CPU acceptance. Recorded Gymtrack Observe GYM-47 merged to develop with GYM-48–50 still backlog. No project code, migrations, credentials, merges or deployments changed.

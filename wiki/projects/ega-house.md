@@ -1,40 +1,46 @@
 ---
 type: project
 status: active
-updated: 2026-10-25
+updated: 2026-11-01
 related: [agent-delivery-workflow, helm]
 ---
 
 # EGA House
 
-Personal productivity platform (Project → Goal → Task → Timer → Review), with web/mobile clients, standalone API and agent integrations. **UX upgrade planning resumed**; delivery is not yet in the top-three `now.md` queue.
+Personal productivity platform (Project → Goal → Task → Timer → Review), with web/mobile clients, standalone API and agent integrations. The W0–W3 workspace upgrade is now implemented and merged; open performance and shell changes are **not** delivered.
 
 ## Current state
 
-- [Ega-House-Platform](https://github.com/egawilldoit/Ega-House-Platform) `main@d8bc7d4ea3b7871cf9aa6674305e4cb0c56e1aab` (last commit 2026-10-17, rechecked 2026-10-25). Existing npm workspace uses Next.js/React, Expo, Hono and shared domain/data packages. No newly merged UX-upgrade PR was found in the checked 2026-10-22 onward window.
-- Linear now scopes a **Gr8r-inspired, clean-room** task-workspace upgrade: [W0 EGA-771](https://linear.app/egawilldoit/issue/EGA-771) build/reuse baseline, [W1 EGA-772](https://linear.app/egawilldoit/issue/EGA-772) task workspace, [W2 EGA-773](https://linear.app/egawilldoit/issue/EGA-773) views/navigation and [W3 EGA-774](https://linear.app/egawilldoit/issue/EGA-774) EGA-native extensions. All four were **Todo** at this check; planning is not implementation or deployment.
-- W0's dated 2026-10-24 audit of the unchanged `main` recorded typechecks and architecture check passing, 1,786 web tests passing, 40 ESLint warnings, and a sandbox `next/font/google` fetch/build failure. These are **issue-recorded audit results**, not tests rerun here. [EGA-778](https://linear.app/egawilldoit/issue/EGA-778) tracks the font fix.
-- Existing autonomous Runner is partially integrated, **not** a proven Production delivery system. It is distinct from Helm's native T3 control plane.
+- Canonical [Ega-House-Platform](https://github.com/egawilldoit/Ega-House-Platform) `main@637cb9aad9a10c604aa1f2612c8ff04b25a79678`, checked 2026-11-01. This is the merge of [PR #338](https://github.com/egawilldoit/Ega-House-Platform/pull/338) on 2026-10-30. GitHub merge state is **code evidence**, not proof that Production serves that SHA.
+- Linear [W0 EGA-771](https://linear.app/egawilldoit/issue/EGA-771), [W1 EGA-772](https://linear.app/egawilldoit/issue/EGA-772), [W2 EGA-773](https://linear.app/egawilldoit/issue/EGA-773) and [W3 EGA-774](https://linear.app/egawilldoit/issue/EGA-774) all read **Done** (latest updates 2026-10-27–29). Corresponding feature PRs are merged into `main`, including [Areas #328](https://github.com/egawilldoit/Ega-House-Platform/pull/328) and [Home #333](https://github.com/egawilldoit/Ega-House-Platform/pull/333). Delivered code includes task interactions, saved views/table/calendar/timeline, favourites, notifications, archive, agent attribution, areas, project files, estimates, templates and Home improvements. These issue closures do **not** independently certify deployed migrations, browser flows or Production acceptance.
+- [PR #336](https://github.com/egawilldoit/Ega-House-Platform/pull/336) merged 2026-10-30: authenticated workspace UI/motion polish, without schema/API/auth changes. Its report records typecheck, build and 2,257 web tests passed, but browser screenshots and accessibility inspection were **skipped**; do not treat them as passed.
+- [PR #338](https://github.com/egawilldoit/Ega-House-Platform/pull/338) merged 2026-10-30: Vercel function region configured to `dub1` to align with the Ireland database. Actual Production region, served deployment SHA and post-merge authenticated smoke/latency checks **not verified here**.
+- [PR #337](https://github.com/egawilldoit/Ega-House-Platform/pull/337) remains **open**: realtime visibility refresh correctness and narrower sidebar payload. Its own report says no measured Active CPU reduction; the 50% reduction is still a target, not an achieved result. The PR reported a shared `decode-uri-component` security-audit blocker on 2026-10-30; recheck current CI before action.
+- [PR #339](https://github.com/egawilldoit/Ega-House-Platform/pull/339) remains **open** as of 2026-11-01: persistent authenticated workspace shell and route-group migration. Review repairs are described in the PR; exact-head CI, browser navigation/E2E behavior and merge readiness require fresh verification. Not merged or deployed.
+- Autonomous Runner integration is separate from Helm's native T3 control plane. No end-to-end Production delivery acceptance is inferred from merged features.
 
 ## Decisions
 
-- Gr8r is an **observable UX reference only**; its repository has no reusable license. Do not copy its JS, HTML, CSS, assets, seed data or state/store logic. Reimplement within EGA's existing stack and reuse existing actions, components and domain contracts.
-- Sequence W0 build health and shared primitives before W1/W2/W3. No duplicate services or speculative new design system.
-- Existing domain/application/data layers own rules; agent Runner merge policy stays human review unless separately authorized. Do not merge Runner and Helm architectures by inference.
+- Gr8r remains an **observable UX reference only**; no copying unlicensed JS, HTML, CSS, assets or state logic. Reuse EGA domain/actions and existing architecture.
+- Keep UI delivery, CI, schema/migration application, Vercel deployment, browser acceptance and Production acceptance as separate gates.
+- Keep the 50% CPU objective measurement-led; do not equate fewer queries, code changes or READY builds with proven usage reduction.
+- Runner and Helm remain separate; no automatic merges or architectural replacement without explicit authorization.
 
 ## Open questions
 
-- When should the owner promote this planned backlog into the delivery queue relative to job search, Gymtrack and Helm? Planning activity alone does not supersede `now.md` priorities.
-- Which exact W0 build issues reproduce outside the restricted sandbox, and which current components can be reused before frontend work?
-- Which Runner workflow, if any, is independently runtime-accepted at the latest code SHA?
+- Which exact Production web/API deployment SHAs and database migrations are live, and has the owner accepted the W0–W3 journeys in the browser?
+- Did the #338 region configuration actually move Production functions to Dublin, and what are comparable navigation/latency measurements?
+- Does #339 preserve all mainline route behavior and pass exact-head CI/E2E after the latest review repairs?
+- What is the measured Vercel Active CPU baseline, and what does #337 change after a comparable observation window?
 
 ## Next steps
 
-1. Keep W0–W3 as a scoped, **unimplemented** backlog until an explicit delivery slot is assigned.
-2. When scheduled, start with [EGA-778](https://linear.app/egawilldoit/issue/EGA-778) and [EGA-771](https://linear.app/egawilldoit/issue/EGA-771), verifying the latest `main`, repository `AGENTS.md` and reuse contract before code changes.
-3. Preserve clean-room and test/CI boundaries; do not expand into Runner replacement or unrelated features.
+1. Finish [#339](https://github.com/egawilldoit/Ega-House-Platform/pull/339) review: verify current head, route parity, authenticated navigation and exact-head CI/E2E; do not merge a broken shell.
+2. Recheck [#337](https://github.com/egawilldoit/Ega-House-Platform/pull/337) CI/security audit and measure CPU before claiming savings or planning more optimization.
+3. Verify #338 Production region/deployment identity and run the documented authenticated smoke/latency checks; distinguish configuration merge from live acceptance.
+4. Record owner/browser acceptance separately for W0–W3, including any outstanding migration and accessibility evidence.
 
 ## Links
 
-- [Repository](https://github.com/egawilldoit/Ega-House-Platform) · [W0 source contract](https://linear.app/egawilldoit/issue/EGA-771)
+- [Repository](https://github.com/egawilldoit/Ega-House-Platform) · [W0 scope](https://linear.app/egawilldoit/issue/EGA-771) · [Shell PR #339](https://github.com/egawilldoit/Ega-House-Platform/pull/339)
 - [Agent delivery workflow](../concepts/agent-delivery-workflow.md) · [Helm](helm.md)
