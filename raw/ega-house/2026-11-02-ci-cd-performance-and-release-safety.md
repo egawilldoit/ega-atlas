@@ -305,7 +305,145 @@ The source [43-item audit](https://github.com/egawilldoit/Ega-House-Platform/blo
 
 **Shipped speed techniques:** #11, #12 and #16. **Shipped main-run safety:** #8, #41, plus strict hygiene, route tests, release-attempt and shard-contract enforcement (the last items are cross-cutting safeguards). Existing execution/caching behavior was retained unless named otherwise. In particular: no Playwright, node_modules, remote or build-artifact caches; no third shard; no larger or paid runner.
 
-## 12. What to do next
+## 12. Original investigation: how we found the problem
+
+The work started in a single `docs/ci-performance-audit` worktree created from `origin/main@45f668a2`, after PR #340. The independent audit and plan preceded implementation. The agent explicitly left an unrelated local `supabase/.temp/cli-latest` modification untouched. This describes the original agent's recorded work; no 100-run audit was repeated by this Atlas edit.
+
+The investigation used the **GitHub CLI (`gh`)**, GitHub Actions **runs/jobs/timings REST endpoints**, job logs, current workflow YAML, PR changed-file lists and a local Vitest per-file timing report. The historical [source audit](https://github.com/egawilldoit/Ega-House-Platform/blob/4c426a1d/docs/ci/performance-audit.md) contains the original selection criteria, dated run IDs and findings.
+
+| Investigation | Original sample | Key evidence and conclusion |
+|---|---|---|
+| Workflow inventory | 100 Unified runs, 2026-10-29 01:37–2026-11-01 21:06 UTC | 34 successes; mixed-scope success p50 **281s**, p90 **331s** |
+| Current configuration | Five runs after `dee17084`, already among the 100 | Do not double-count a separate five-run sample |
+| Old web bottleneck | 49 successful `web` jobs | Successful-only p50 **262s**, p90 **299s**; the 193s all-execution median included aborts |
+| Changed-file routing | PRs #328–#340, twelve PRs | Seven nearly full-matrix due package/server fan-out; existing detector inexpensive, conservative |
+| Job/step logs | Runs [41349819428](https://github.com/egawilldoit/Ega-House-Platform/actions/runs/41349819428), [41348572389](https://github.com/egawilldoit/Ega-House-Platform/actions/runs/41348572389), [41335541779](https://github.com/egawilldoit/Ega-House-Platform/actions/runs/41335541779) | `npm ci` 24–40s even with cache hit; all-web Vitest 120–125s; build 35–55s |
+| Vitest local JSON report | 306 test files | Path import/environment/isolation dominated the ~120s suite; only ~22s assertions |
+| Queue and concurrency | 100-run history | Queue p50 **2s**, p90 **84s**, one unexplained 92-minute outlier; one cancelled `main` push (run `40821834402`) |
+| Billing | Historical public-repo run | Actions timing API `total_ms=0` billable; job capacity still consumed |
+
+**The old job's actual dependency:** typecheck → all web tests → production build → install Playwright → browser contracts. In one 299s successful web job, the audit reports about **39s npm ci**, **24s typecheck**, **125s tests**, **55s build**, **36s Chromium setup**, and **6s browser contracts**, plus setup/checkout and per-job overhead. A 320s web-only workflow was reconciled as **11s initial delay + 299s web + 2s handoff + 7s hygiene + 1s completion tail**. The rounded individual step times are not exact-additive.
+
+**What the audit ruled out:** replacing the already-correct `dorny/paths-filter@v3`, paid runner migration, risky test-result caching, enabling Vitest `fileParallelism` against the isolation policy, and adding a new build framework for a short pipeline. It identified a missing `.npmrc` filter (fixed in #341) and a separate `vercel.json` routing/deployment-validation gap (**not fixed** by #341).
+
+## 13. Precise implementation method and safety dependencies
+
+```text
+BEFORE:
+changes -> web [typecheck -> 306-file Vitest -> build -> Playwright -> browser] -> hygiene
+        -> other package/API/mobile/db jobs (already independent) ----------^
+
+AFTER:
+changes -> web [build -> Playwright -> browser] ----------------------------+
+        -> web-typecheck [TypeScript + font guard] -------------------------+
+        -> web-tests (1) [--shard=1/2] -------------------------------------+-> hygiene
+        -> web-tests (2) [--shard=2/2] -------------------------------------+
+        -> existing package/API/mobile/db jobs ----------------------------+
+```
+
+**Batch 0A — make the aggregate fail closed:** `scripts/ci/aggregate-gate.mjs` receives `toJSON(needs)` inside `hygiene`. Its contract knows **16 dependency job IDs**, validates eight exact `true`/`false` routing outputs, requires `changes` and `workspace` even for docs-only changes, and treats unexpected skip/failure/cancellation/missing/unknown job as an error. Informational `lint-report` is allowed to skip. **35 gate unit cases** protect negative and positive states. Workflow tests were added to the always-on `workspace` job.
+
+**Batch 0B — protect APK and OTA:** Both mobile workflow files now call the same `scripts/ci/release-evidence.mjs` rather than an inline `gh api` check for any green run. They add `actions: read` permissions and use the workflow-provided GitHub token. The helper requires a trusted complete `main` `push`/`workflow_dispatch` run for the exact source SHA, correct repo/workflow, **one run attempt**, and **all 17 named API jobs**, including both shards. Missing/extra/duplicate/skipped/failed/cancelled jobs fail; green PR evidence does not qualify. **37 release-evidence unit cases** and read-only negative rehearsals back this up. No new token or paid service was needed.
+
+**Batch 0C — fix concurrency and paths:** Ordinary PR updates cancel superseded work via a stable PR group. Main pushes, manual dispatches and `release/full-matrix/*` PRs use a unique `github.run_id` group. This avoids the GitHub [documented replacement of older pending runs](https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/control-workflow-concurrency), even with `cancel-in-progress:false`. `.npmrc` was added to **all eight** path filters; regression tests replay web→server, server→data-access, mobile→api-client and database→Drizzle dependencies. A deliberately timed live double-main-push was **not** performed.
+
+**Batch 1 — remove serial web work:** Keep the original required `web` check name and production build/browser contracts; run typecheck/font checks in `web-typecheck`; run two independent `web-tests` jobs with Vitest's `--shard=1/2` and `2/2`, `fail-fast:false`. Preserve serial file isolation within each shard, rather than using unverified in-process file parallelism. The new lanes all participate in `hygiene.needs`. No app tests were deleted.
+
+**Batch 1b — stop silent shard drift:** The real YAML matrix is compared to the release helper's shard contract; `[1,2]` and `[2,1]` pass, while `[1]`, `[2,3]`, `[1,2,3]` and duplicates fail. The release helper also rejects a runtime `web-tests (3)` job, instead of silently ignoring it. This was the last code correction before the documentation-only final commit.
+
+## 14. Complete job-duration evidence
+
+**Job runtime seconds** from GitHub Actions `completed_at - started_at`, not workflow wall clock. A dash means the lane did not exist before the split.
+
+| Job | Baseline 346s | Optimized A 141s | Final PR 250s | Post-merge 190s |
+|---|---:|---:|---:|---:|
+| changes | 8 | 7 | 43 | 6 |
+| workspace | 75 | 68 | 93 | 68 |
+| contracts | 43 | 37 | 41 | 55 |
+| domain | 51 | 57 | 58 | 39 |
+| application | 62 | 67 | 59 | 64 |
+| data-access | 50 | 55 | 62 | 69 |
+| regressions | 78 | 52 | 58 | 53 |
+| lint-changed | 55 | 45 | 68 | 68 |
+| web | **302** | 92 | 137 | 126 |
+| web-typecheck | — | 74 | 93 | 74 |
+| web-tests (1) | — | 106 | 143 | 122 |
+| web-tests (2) | — | 101 | 104 | 88 |
+| mobile | 123 | 81 | 124 | 136 |
+| server | 71 | 49 | 68 | 73 |
+| api-client | 52 | 35 | 78 | 62 |
+| db-invariants | 93 | 65 | 99 | **161** |
+| lint-report | skipped | skipped | skipped | skipped |
+| hygiene | 8 | 10 | 53 | 15 |
+
+**Bottleneck shifted:** the old 302s `web` job became a 106s first-run web shard; by the final PR run the longest web shard was 143s, and the merged run's slowest job was `db-invariants` at 161s. The 250s PR result was not **only** slower `changes` (43s) and `hygiene` (53s): web/shard and other jobs also ran slower.
+
+### Directly read post-merge job logs
+
+[Unified run 41526874883](https://github.com/egawilldoit/Ega-House-Platform/actions/runs/41526874883) is `event=push` on the exact `main@4c426a1d0a6be1d2e22b34860ba96db7236b9001`, attempt **1**, **success**, **18 job records: 17 successful and informational `lint-report` skipped**.
+
+| Proof | Exact live result |
+|---|---|
+| [Web shard 1 log](https://github.com/egawilldoit/Ega-House-Platform/actions/runs/41526874883/job/125556832847) | **153 files passed; 1,099 tests passed** |
+| [Web shard 2 log](https://github.com/egawilldoit/Ega-House-Platform/actions/runs/41526874883/job/125556832807) | **153 files passed; 1,214 tests passed** |
+| [Web build/browser log](https://github.com/egawilldoit/Ega-House-Platform/actions/runs/41526874883/job/125556832870) | Production build and **2 Playwright shell tests** passed |
+| [Workspace log](https://github.com/egawilldoit/Ega-House-Platform/actions/runs/41526874883/job/125556761926) | **87/87** CI workflow cases and **21/21** architecture cases |
+| [Hygiene log](https://github.com/egawilldoit/Ega-House-Platform/actions/runs/41526874883/job/125558267837) | Each mandatory dependency `result=success expected=yes`; `lint-report skipped expected=no` |
+| [Web typecheck job](https://github.com/egawilldoit/Ega-House-Platform/actions/runs/41526874883/job/125556832662) | Typecheck/font-guard job successful |
+
+This establishes **306 passed files / 2,313 passed tests on the actual merged commit**, not merely on the earlier PR. The post-merge run was **not manually forced full**: workflow changes in `.github/workflows/**` triggered all conservative consumer routes, resulting in a real complete matrix. The helper's release contract checks **actual job results and source identity**, not whether the run was manually dispatched.
+
+## 15. Tools, actual commands, deferred work and verification boundary
+
+**Technical tools used or preserved:** GitHub CLI, Actions REST job/attempt/log APIs, `dorny/paths-filter@v3`, `actions/checkout@v5`, `actions/setup-node@v6`, Node **22**, existing npm store caching, reproducible `npm ci`, installed Vitest **4.1.5**, Playwright Chromium, Next.js build, Node built-in `node:test`, `toJSON(needs)`, GitHub `github.run_id` concurrency, and `ubuntu-latest` GitHub-hosted runners. The prior Blacksmith Gradle-only mobile build policy was **not expanded**. The source code does not independently identify which proprietary T3 Code agent models/subagents authored the commits, so the report does not invent them.
+
+**Read-only measurements (GitHub CLI examples):**
+
+```bash
+gh run list --repo egawilldoit/Ega-House-Platform --workflow unified-platform-validation.yml --limit 100
+gh run view 41526874883 --repo egawilldoit/Ega-House-Platform --log
+gh api 'repos/egawilldoit/Ega-House-Platform/actions/runs/41526874883/jobs?per_page=100'
+gh api 'repos/egawilldoit/Ega-House-Platform/actions/runs/41526874883/attempts/1/jobs?per_page=100'
+```
+
+**Implementation/CI test commands** (documented, **not all rerun during this Atlas writing pass**):
+
+```bash
+npm ci --no-audit --no-fund
+npm run test:ci-workflow
+npm run test:guardrails
+npm run test:architecture
+npm run ci:workspace
+npm run check:architecture
+npm run typecheck
+npm run build
+npm run test --workspace @ega/web -- --shard=1/2
+npm run test --workspace @ega/web -- --shard=2/2
+```
+
+The `test:ci-workflow` package script invokes the real workflow-shape, aggregate-gate and release-evidence test files. **87** such tests passed live on merged `main`. A separate agent completion report recorded **50 guardrail tests**; that count was not independently re-executed in Atlas.
+
+**Read-only APK/OTA release-evidence command (next operational proof, not executed here):**
+
+```bash
+node scripts/ci/release-evidence.mjs \
+  --sha 4c426a1d0a6be1d2e22b34860ba96db7236b9001 \
+  --repo egawilldoit/Ega-House-Platform
+```
+
+A positive invocation of the actual helper remains outstanding. The main push's recorded jobs **appear to satisfy** its contract, but a newer partial run of the same SHA could be chosen and cause a **fail-closed false negative**. Only if necessary, an authorized full-matrix dispatch may be used: `gh workflow run unified-platform-validation.yml --ref main -f force_full=true`. None of these steps publishes an APK or OTA; publishing requires its own authorization.
+
+**Why measured speed differs from runner resource use:** wall clock is `run.updated_at - run.created_at`; runner minutes sum every individual job interval, including overlaps. The selected **346s** pre-split full-matrix run is not the historical mixed-scope p50 of 281s. Four optimized runs **141/172/250/190s** have provisional median **181s** and mean **188.25s**, but runner consumption averaged **19.81min vs 17.85min** at baseline. This is a small n=4/n=1 comparison, **not** ten-run p50/p90 certification, actual account billing or evidence of reduced Vercel Active CPU.
+
+**Rejected rather than shipped:** Playwright download cache, `node_modules` cache without provenance/clean fallback, third shard, cross-job `.next` artifact transfer, remote task cache, runner-provider migration, more aggressive selective filtering, test-result reuse, and in-process parallel test files. These must remain recorded as experiments or rejected proposals, not as the 43 “delivered improvements.”
+
+**Rollback boundaries:** reverting `f28f0516` restores serial web checks but requires consistent `hygiene.needs` and release shard-contract updates. Reverting `540586cb` loses drift protection; reverting `c095a5ca` reintroduces main run replacement and `.npmrc` routing risk; reverting `ee802276` or `f2a39eb` reintroduces release or aggregate false-green defects. Rollback was **not** performed and must be a separately tested change.
+
+**Evidence links:** [Original audit and 43-point matrix](https://github.com/egawilldoit/Ega-House-Platform/blob/4c426a1d/docs/ci/performance-audit.md) · [Optimization plan and batch metrics](https://github.com/egawilldoit/Ega-House-Platform/blob/4c426a1d/docs/ci/optimization-plan.md) · [All PR commits](https://github.com/egawilldoit/Ega-House-Platform/pull/341/commits) · [Exact post-merge workflow](https://github.com/egawilldoit/Ega-House-Platform/actions/runs/41526874883) · [Strict aggregate gate source](https://github.com/egawilldoit/Ega-House-Platform/blob/4c426a1d/scripts/ci/aggregate-gate.mjs) · [Release helper source](https://github.com/egawilldoit/Ega-House-Platform/blob/4c426a1d/scripts/ci/release-evidence.mjs) · [GitHub official concurrency](https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/control-workflow-concurrency) · [GitHub official attempt jobs API](https://docs.github.com/en/rest/actions/workflow-jobs).
+
+---
+
+## 16. What to do next
 
 1. **Before a mobile release:** run the strict release-evidence helper on the exact intended `main` SHA. Use a new `force_full` run only if existing full evidence cannot be accepted; never publish on a PR or partial run.
 2. **Performance evidence:** gather ≥10 ordinary, fully executed, comparable CI workflows; calculate scoped median/p90 and runner minutes without cherry-picking a best run. Track `db-invariants`, web/build, shard balance and hygiene overhead.

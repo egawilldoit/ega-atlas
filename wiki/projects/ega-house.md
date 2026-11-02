@@ -49,5 +49,5 @@ Personal productivity platform (Project → Goal → Task → Timer → Review),
 ## Links
 
 - [Repository](https://github.com/egawilldoit/Ega-House-Platform) · [W0 scope](https://linear.app/egawilldoit/issue/EGA-771) · [Shell PR #339](https://github.com/egawilldoit/Ega-House-Platform/pull/339) · [CI PR #341](https://github.com/egawilldoit/Ega-House-Platform/pull/341)
-- [Complete CI optimization and release-safety report](../../raw/ega-house/2026-11-02-ci-cd-performance-and-release-safety.md)
+- [Full CI history, 43-technique evaluation, exact job evidence, tools and commands](../../raw/ega-house/2026-11-02-ci-cd-performance-and-release-safety.md)
 - [Agent delivery workflow](../concepts/agent-delivery-workflow.md) · [Helm](helm.md)
