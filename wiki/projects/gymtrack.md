@@ -15,7 +15,7 @@ Multi-tenant gym-management SaaS. Sprint 2 delivered application-led onboarding,
 
 Canonical code: [GitLab trackgym101/gymsas](https://gitlab.com/trackgym101/gymsas), integration branch `develop`. The sprint was exercised on [DEV web](https://dev.gymtrack.space) and [DEV API](https://api-dev.gymtrack.space). Project remains active.
 
-**CI delivery (2026-11-02):** [MR !124](https://gitlab.com/trackgym101/gymsas/-/merge_requests/124) merged to `develop@a23dab5`: web, API unit, API HTTP E2E and delivery checks now run as four parallel CircleCI jobs, with a strict workflow-specific evidence contract and safer cache policy. The exact merged SHA passed [protected-branch validation](https://app.circleci.com/workflow/792a3dc9-6b7b-4c34-96bc-5b768af5ee32). The last pre-merge run was **205.4s**, compared with the historical **328.97s** successful-workflow median; a new p50 and the billed credits remain unverified. [Full CI/CD implementation and results report](../../raw/gymtrack/2026-11-02-circleci-performance-optimization.md). This is CI acceptance, not application Production certification.
+**CI delivery (2026-11-02):** [MR !124](https://gitlab.com/trackgym101/gymsas/-/merge_requests/124) merged to `develop@a23dab5`: web, API unit, API HTTP E2E and delivery checks now run as four parallel CircleCI jobs, with a strict workflow-specific evidence contract and safer cache policy. The exact merged SHA passed [protected-branch validation](https://app.circleci.com/workflow/792a3dc9-6b7b-4c34-96bc-5b768af5ee32). The last pre-merge run was **205.4s**; seven small-executor pilot runs have a **provisional 216.8s median** versus the historical **328.97s** median. Billed credits and a stable new p50 remain unverified. [Full CI/CD implementation and results report](../../raw/gymtrack/2026-11-02-circleci-performance-optimization.md). This is CI acceptance, not application Production certification.
 
 Separate observability track (checked 2026-11-01): [GYM-47](https://linear.app/egawilldoit/issue/GYM-47) is Done and its opt-in NestJS Observe instrumentation merged to GitLab `develop@d0ecb46862566f8e4316d3a6f58cfd624f3f1008` on 2026-10-30. [GYM-48](https://linear.app/egawilldoit/issue/GYM-48) config delivery, [GYM-49](https://linear.app/egawilldoit/issue/GYM-49) hosted DEV privacy/trace acceptance and [GYM-50](https://linear.app/egawilldoit/issue/GYM-50) Production enablement remain Backlog. Merge does **not** establish enabled DEV tracing, accepted privacy behavior or Production activation.
 
@@ -117,7 +117,7 @@ Permanent staff deletion; member login/portal; ownership transfer; new cash coll
 - What retention purpose/duration and cross-organization identity behavior will be approved before permanent deletion?
 - Exact served application/configuration parity, complete authenticated automated evidence and earlier affected-account recovery remain unresolved.
 - The previous Atlas page's 2026-10-25 draft/bootstrap observations were not reverified for unrelated work in this update.
-- The seven-day post-cache-retention billed usage and a comparable ten-run post-split p50/p90 are not yet measured; the database remains the CI bottleneck.
+- The seven-day post-cache-retention billed usage and a stable ten-run post-split p50/p90 are not yet measured; the database remains the CI bottleneck. Exact protected six-job results were not independently audited in Atlas despite a successful GitLab external workflow status.
 
 ## Next steps
 

@@ -10,7 +10,7 @@
 **Merged into:** `develop` on 2026-11-02 at 20:12:40 UTC  
 **Merge commit:** [`a23dab522060be2fd0547952e84f85bbb34ab6e3`](https://gitlab.com/trackgym101/gymsas/-/commit/a23dab522060be2fd0547952e84f85bbb34ab6e3)
 
-> Evidence boundary: the benchmark, tests, cost estimates and implementation details below are from MR !124's code, audit documents, local/CI completion reports and GitLab results. GitLab independently reports a successful protected-branch CircleCI status on the merge SHA. This Atlas writing pass did not independently retrieve every CircleCI job log or the account's final billed storage export. A green CI status does not certify the hosted Gymtrack user journey or authorize Production.
+> Evidence boundary: this is an Atlas-authored summary of MR !124, the project-owned audit/plan, local/CI completion reports and GitLab results. The GitLab API independently confirms the merge SHA and a successful `protected-branch-validation` external status. **It does not expose the six protected CircleCI job outcomes or the protected workflow's duration; those have not been individually rechecked here.** The seven pilot job outcomes for #325/#326 come from the implementation agent's CircleCI API receipts, not a separate Atlas job-by-job retrieval. No final billed storage export or independently sampled production user journey is available. Green CI is not Production authorization.
 
 ## 1. Outcome
 
@@ -18,7 +18,7 @@ Gymtrack's CircleCI workflow was slow because the web checks, API unit checks, A
 
 MR !124 split the application checks into four parallel CircleCI jobs, retained the existing isolated PostgreSQL acceptance, hardened exact-job-set evidence, adjusted pnpm cache retention/invalidation and tested a higher database executor class. The higher executor class did not help and was reverted. A final security fix removed a caller-controlled required-job override from the evidence helper.
 
-**Observed result:** the historical successful workflow median was **328.97 seconds**. The last pre-merge feature-branch workflow, pipeline **#326**, completed in **205.4 seconds**, about **37.6% less elapsed time than that historical median**. This compares a single recent run with an older median; it is **not** a confirmed new p50. Other completed post-split observations were about **205–236 seconds**, showing database-suite variability.
+**Observed result:** the historical successful workflow median was **328.97 seconds** across **17 successful runs**. The last pre-merge pilot, **#326**, took **205.4 seconds**, or **37.6% less** than that historical median. Seven reported successful post-split **small-executor** pilot runs (#319, #320 and #322–#326) have a **provisional median of 216.8 seconds** and a **nearest-rank p90 of 235.7 seconds**. That is approximately **34.1% lower** than the historical median, but these are only seven near-term runs across several commits/cache states: they do **not** establish a stable new long-run p50/p90 or an exact-SHA A/B.
 
 **Merge result:** MR !124 is merged. The `develop` merge SHA subsequently received **success** for `CircleCI: Workflow protected-branch-validation`. Vercel Web and API checks also reported success for that SHA, but those checks are separate from application acceptance.
 
@@ -53,7 +53,7 @@ A conditional **313 workflows/month** planning rate yielded **~19,526 credits/mo
 
 ## 3. Independent review and corrections
 
-The original audit covered **43 optimization techniques**. An independent model review and a separate adjudication corrected the implementation plan before code changes.
+The original audit covered **43 optimization techniques**. An independent model review and a separate adjudication corrected the implementation plan before code changes. The source [audit](https://gitlab.com/trackgym101/gymsas/-/blob/a23dab522060be2fd0547952e84f85bbb34ab6e3/docs/ci/performance-audit.md) still opens with an audit-time **“proposed”** status, and the source [optimization plan](https://gitlab.com/trackgym101/gymsas/-/blob/a23dab522060be2fd0547952e84f85bbb34ab6e3/docs/ci/optimization-plan.md) ends with **“ready for owner review, not merge.”** Those sentences are stale historical drafting states at the merged SHA; this report and the GitLab MR/commit statuses provide the later outcome. Updating those private-repository headings was **not** part of this Atlas-only correction.
 
 ### Safety findings
 
@@ -97,7 +97,7 @@ The final pre-merge review found a bypass: callers could override `requiredJobs`
 
 **Final local evidence:** **18/18** evidence-helper tests, **14/14** CircleCI config tests and **279** delivery tests (**254 passed, 25 optional skipped, zero failed**). Earlier Batch 0 validation counted **16/16** evidence tests; two more were added by the final hardening.
 
-The no-op gate remains a useful job dependency, but **not an independent certificate** that every mandatory job executed. The evidence-helper contract is tested; the GitLab required external status does not itself call that helper during merge evaluation.
+The no-op gate remains a useful job dependency, but **not an independent certificate** that every mandatory job executed. `scripts/ci/circleci-evidence.mjs` is a tested validator for evidence supplied to it; **neither the live CircleCI workflow nor GitLab's external-status merge check automatically invokes it for a fresh API job-set audit**. Current CI configuration tests parse the job list and reject mandatory job filters, and GitLab requires a green external workflow status. Those safeguards support the shipped graph, but they must not be described as runtime enforcement of the helper's canonical job-set contract. Before any release that relies on exact completed-job evidence, retrieve and validate the live protected workflow's actual jobs, not only its aggregate status.
 
 ## 5. Batch 1 — parallel application validation
 
@@ -125,7 +125,7 @@ candidate-catalog              (pilot only; independent)
 | `candidate-catalog` | Pilot-only candidate generation with separate required-success evidence |
 | `validation-gate` | No-op orchestration requiring the five mandatory validation jobs |
 
-Each application job checks out the exact commit and uses the frozen install. Separating containers avoids shared build-output and port contention. The workflow names stayed `pilot-validation` and `protected-branch-validation`. Mandatory jobs were kept unfiltered.
+Each application job checks out the exact commit and uses the frozen install. Separating containers avoids shared build-output and port contention. The workflow names stayed `pilot-validation` and `protected-branch-validation`. Mandatory jobs were kept unfiltered. **Important distinction:** the pilot `validation-gate` depends on the five validation jobs but **does not depend on `candidate-catalog`**. The catalog remains a separate pilot workflow job; the canonical seven-job evidence contract requires its success whenever independently evaluated. CircleCI's `requires` semantics alone do not prove that a filtered or omitted catalog job executed.
 
 **Test parity recorded during delivery:**
 
@@ -140,6 +140,23 @@ Each application job checks out the exact commit and uses the frozen install. Se
 A previous delivery-suite receipt reported **277 tests, 252 passed, 25 skipped**. The final receipt increased by two passing tests. Do not confuse local delivery command totals with a single historical CircleCI log.
 
 The first post-split pilot workflow, **#319**, succeeded in **219.6s**. This established the structural gain without removing the expensive isolated database tests. The database path became the workflow's limiting job.
+
+### Recorded pilot run sequence
+
+These are agent-reported CircleCI durations on successive feature-branch commits. Only the seven `small` observations are grouped for the preliminary median; the intentionally tested `medium` run is excluded.
+
+| Pilot pipeline | Resource experiment | Reported workflow wall time | Interpretation |
+| --- | --- | ---: | --- |
+| #319 | Split; all `small`, first run | **219.6s** | First successful split validation |
+| #320 | Split; all `small`, subsequent run | **229.1s** | Cache-policy follow-up, no guaranteed cache speedup |
+| #321 | Database `medium` | **223.4s** | Benchmark, **excluded** from small-only sample; reverted |
+| #322 | All `small` | **216.8s** | Database returned to critical path |
+| #323 | All `small` | **235.7s** | Slowest recorded small run of this sequence |
+| #324 | All `small` | **205.5s** | Faster database execution |
+| #325 | All `small` | **215.3s** | Previous head; seven jobs reported successful |
+| #326 | All `small`, final pre-merge head | **205.4s** | Seven jobs reported successful; SHA `6e6055d` |
+
+**Calculation:** sorted small-run durations are `205.4, 205.5, 215.3, 216.8, 219.6, 229.1, 235.7` seconds. Their midpoint median is **216.8s (n=7)** and nearest-rank p90 is **235.7s (n=7)**. Neither should be reported as a robust, 10-run, scope-matched performance certification; configuration and cache inputs changed across this series.
 
 ## 6. Batch 2 — conservative pnpm cache policy
 
@@ -186,7 +203,7 @@ The final pre-merge source commit was `6e6055d095f0ac0a420d10388bf3299125ad6a52`
 | MR head external status | Same `6e6055d` | **Success**; GitLab MR mergeable |
 | Protected-branch validation | Merge commit `a23dab5` on `develop` | **Success**, independently observed from GitLab commit status |
 
-Both pilot workflows #325 and #326 were reported as containing each of the **seven canonical jobs once**, all successful. The candidate catalog had its own successful job. The linked [final pilot workflow's source commit](https://gitlab.com/trackgym101/gymsas/-/commit/6e6055d095f0ac0a420d10388bf3299125ad6a52) contains the final evidence-helper fix.
+Both pilot workflows #325 and #326 were reported by the implementation agent's CircleCI API check as containing each of the **seven canonical jobs once**, all successful. The candidate catalog had its own successful job. GitLab independently confirms that the final source head had a successful external CircleCI status. The linked [final pilot workflow's source commit](https://gitlab.com/trackgym101/gymsas/-/commit/6e6055d095f0ac0a420d10388bf3299125ad6a52) contains the final evidence-helper fix.
 
 The owner authorized the merge. [MR !124](https://gitlab.com/trackgym101/gymsas/-/merge_requests/124) merged into `develop`, producing `a23dab522060be2fd0547952e84f85bbb34ab6e3`.
 
@@ -194,7 +211,7 @@ Post-merge, GitLab reported **success** for:
 - [CircleCI `protected-branch-validation`](https://app.circleci.com/workflow/792a3dc9-6b7b-4c34-96bc-5b768af5ee32), tied to the exact merge SHA.
 - Vercel `gymsas-web` and `gymsas-api` checks, tied to the merge SHA.
 
-These successes establish **merged code and protected CI**, not manual browser acceptance or Production authorization. This documentation update did not trigger a release or deployment; provider integrations may create automatic deployments and status checks.
+These statuses establish **merged code, successful aggregate protected CI, and successful Vercel checks**, not a job-by-job re-audit of protected CircleCI, manual browser acceptance or Production authorization. Automatic Git-backed Vercel deployments can occur alongside those checks; **“no deployment” in the MR implementation report means no manual application release/deployment was initiated by the CI change**, not that Vercel performed no preview or branch builds. This Atlas documentation update did not trigger a release or deployment. No measured post-merge protected workflow runtime is available here.
 
 ### Implementation commit trail
 
@@ -216,8 +233,8 @@ Use the [MR commits tab](https://gitlab.com/trackgym101/gymsas/-/merge_requests/
 
 | Measure | Before | After / current | Evidence quality |
 | --- | ---: | ---: | --- |
-| Successful workflow wall time | **328.97s p50** | **205.4s** latest #326 | Historical median vs one verified recent run |
-| Historical p90 | **349.67s** | Not established with a comparable large sample | Avoid a new statistical p90 claim |
+| Successful workflow wall time | **328.97s p50 (n=17)** | **216.8s preliminary small-only median (n=7)**; #326 **205.4s** | Different cohorts; new median is provisional, not a stable p50 |
+| Successful workflow p90 | **349.67s (n=17)** | **235.7s provisional nearest-rank p90 (n=7)** | Small sample; not an established long-run p90 |
 | Recent post-split workflow wall | — | Approximately **205–236s** | Small sample, variable database runtime |
 | Critical path | `application-validation` | `database-validation`, roughly **203–233s** | Observed structural bottleneck shift |
 | Latest database job | **213.95s** historical median | **202.6s** on #326 | Different measurement windows |
@@ -229,9 +246,10 @@ The latest-run improvement against the historical median is:
 
 ```text
 (328.97 - 205.4) / 328.97 × 100 = 37.56%
+(328.97 - 216.8) / 328.97 × 100 = 34.10%  (provisional n=7 median)
 ```
 
-For an approximately 215-second run, the same comparison yields about **34.6%**. Across the observed post-split range, the comparison is about **28–38%**. These are **descriptive single-run changes**, not a controlled new p50/p90 and not a guaranteed future gain.
+For an approximately 215-second run, the same comparison is about **34.6%**. Across the observed post-split range, the single-run comparisons are about **28–38%**. The n=7 median provides a better descriptive center than the fastest final run, but commit/cache variation and the short window prevent claiming a stable p50/p90 or guaranteed future gain.
 
 **Trade-off:** four independent application jobs incur more repeated checkout, install and setup. The user gets much shorter feedback, but aggregate compute credits can rise even when workflow wall time falls. The intended budget guardrail was **24,000 project credits/month**, subject to the account's actual available Free-plan allowance. The billed storage and monthly forecast need later confirmation.
 
@@ -255,13 +273,15 @@ The independent catalog job remains an independently required success for the pi
 | Item | Current decision | Reopen when |
 | --- | --- | --- |
 | 7-day credit/storage evaluation | **Pending** | A provider billed-usage export covers enough days after retention change to compare cache and artifact storage honestly |
-| New successful-workflow p50/p90 | **Pending** | At least 10 comparable, completed, scope-matched post-change runs have accumulated |
+| Stable new successful-workflow p50/p90 | **Pending** | Current small-executor sequence has a **provisional n=7 median of 216.8s and p90 of 235.7s**; collect at least 10 comparable, completed, scope-matched runs with cache/config cohort labels |
 | Duplicate TypeScript/build passes | **Deferred** | The application job becomes critical or a measured credit-only benefit exceeds implementation risk |
 | Two-way database sharding | **Not approved** | Owner explicitly accepts complexity and full shard test/isolation evidence plus updated budget model |
 | Database `medium` executor | **Rejected for now** | A materially changed database workload warrants a new benchmark |
 | Global auto-cancel | **Off** | A scoped policy is reviewed that cannot discard required `develop` validation evidence |
 | Path-based conditional execution | **Deferred** | Dynamic configuration and exact-required-status coverage can be certified, including omitted and filtered jobs |
-| Protected-branch workflow first live run | **Completed** | GitLab already reports success on the exact `a23dab5` merge commit |
+| Protected-branch workflow first live run | **Completed at aggregate-status level** | GitLab reports success on the exact `a23dab5` merge commit; actual six-job completeness and post-merge duration were not independently retrieved here |
+| Protected live job evidence for release | **Not independently verified here** | Retrieve all six actual `protected-branch-validation` jobs for the exact merge/release SHA and run the canonical evidence check before any release decision |
+| Historical source audit/plan status wording | **Stale in private repository** | These files still describe pre-merge states; MR !124 and this dated Atlas report supersede those statements. Correct in a separate documentation-only GitLab change if desired |
 
 The optional database-sharding model suggested approximately **150 seconds** and **~7–8 additional compute credits/workflow**. It is **not delivered, budget-certified or promised**. It requires updating `scripts/db/test-isolated.sh` to accept a shard selector, run the standalone customer test once, isolate each PostgreSQL cluster and prove the full test-file union, including RLS and finance cases.
 
@@ -271,7 +291,7 @@ Do not reopen the entire 43-point audit to optimize a noncritical step. First ga
 
 **Present state as of 2026-11-02:** MR !124 is merged into `develop`, exact-merge-SHA protected CircleCI is successful and CI runtime is materially lower in the observed post-split runs. Application functionality and hosted acceptance remain separate release gates.
 
-**Next evidence tasks:** (1) export real post-change CircleCI storage/compute credits after the seven-day cache retention window; (2) capture ten comparable successful workflows to calculate a defensible new p50/p90; (3) continue Sprint 3's existing hosted security and deletion-policy work separately from this completed CI initiative.
+**Next evidence tasks:** (1) retrieve the complete six-job protected workflow evidence for `develop@a23dab5` if a release-certification record needs it; (2) export billed CircleCI storage and compute usage after the seven-day retention window; (3) extend the seven provisional small-executor pilot observations to ten comparable runs, recording commit/config/cache cohorts; (4) continue Sprint 3's hosted security and deletion-policy work separately from this completed CI initiative. The private repository's audit/plan heading cleanup is optional documentation maintenance, not a reason to reopen the optimization.
 
 **Sources of truth:**
 - [Gymtrack MR !124, review and commits](https://gitlab.com/trackgym101/gymsas/-/merge_requests/124)
