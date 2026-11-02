@@ -110,3 +110,6 @@ Recorded #339 merged at 6b8d7092 with exact-SHA main CI success, persistent-shel
 
 ## [2026-11-01] update | wiki/projects/ega-house.md, now.md, index.md | ChatGPT
 Follow-up to the concurrent #339 documentation commit: independently verified Vercel Production web and API READY/aliases at main@6b8d709. Corrected the reported all-Dublin claim: web deployment reports dub1, API reports iad1. Retained owner-reported manual acceptance and unrun authenticated E2E, database/latency and CPU measurements as separate gates. No service configuration changed.
+
+## [2026-11-02] ingest | raw/gymtrack/2026-11-02-circleci-performance-optimization.md, wiki/projects/gymtrack.md, now.md, index.md | ChatGPT
+Published the detailed Gymtrack-only CI/CD optimization delivery record for merged GitLab MR !124: reviewed baseline and audit corrections, exact seven/six-job evidence contract, four-way parallelization, conservative 7-day cache policy, failed `medium` database experiment, verified pilot and protected-branch outcomes and the remaining billed-usage/statistical limits. Updated the current Gymtrack page and priority summary. Protected CircleCI was verified successful on develop merge commit a23dab5; no product release or database change was performed by this Atlas update. Public-safe summary only; no raw logs or credentials.

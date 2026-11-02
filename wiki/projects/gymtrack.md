@@ -1,7 +1,7 @@
 ---
 type: project
 status: active
-updated: 2026-11-01
+updated: 2026-11-02
 related: [helm, agent-delivery-workflow, 0003-gymtrack-shared-dev-migrations, 0004-gymtrack-sprint-2-acceptance]
 ---
 
@@ -14,6 +14,8 @@ Multi-tenant gym-management SaaS. Sprint 2 delivered application-led onboarding,
 [GYM-71 is Done](https://linear.app/egawilldoit/issue/GYM-71). This records owner acceptance of delivered scope, **not full hosted security certification or production readiness**. [Decision 0004](../decisions/0004-gymtrack-sprint-2-acceptance.md) explains the changed closure boundary.
 
 Canonical code: [GitLab trackgym101/gymsas](https://gitlab.com/trackgym101/gymsas), integration branch `develop`. The sprint was exercised on [DEV web](https://dev.gymtrack.space) and [DEV API](https://api-dev.gymtrack.space). Project remains active.
+
+**CI delivery (2026-11-02):** [MR !124](https://gitlab.com/trackgym101/gymsas/-/merge_requests/124) merged to `develop@a23dab5`: web, API unit, API HTTP E2E and delivery checks now run as four parallel CircleCI jobs, with a strict workflow-specific evidence contract and safer cache policy. The exact merged SHA passed [protected-branch validation](https://app.circleci.com/workflow/792a3dc9-6b7b-4c34-96bc-5b768af5ee32). The last pre-merge run was **205.4s**, compared with the historical **328.97s** successful-workflow median; a new p50 and the billed credits remain unverified. [Full CI/CD implementation and results report](../../raw/gymtrack/2026-11-02-circleci-performance-optimization.md). This is CI acceptance, not application Production certification.
 
 Separate observability track (checked 2026-11-01): [GYM-47](https://linear.app/egawilldoit/issue/GYM-47) is Done and its opt-in NestJS Observe instrumentation merged to GitLab `develop@d0ecb46862566f8e4316d3a6f58cfd624f3f1008` on 2026-10-30. [GYM-48](https://linear.app/egawilldoit/issue/GYM-48) config delivery, [GYM-49](https://linear.app/egawilldoit/issue/GYM-49) hosted DEV privacy/trace acceptance and [GYM-50](https://linear.app/egawilldoit/issue/GYM-50) Production enablement remain Backlog. Merge does **not** establish enabled DEV tracing, accepted privacy behavior or Production activation.
 
@@ -107,6 +109,7 @@ Permanent staff deletion; member login/portal; ownership transfer; new cash coll
 - Current database membership, permissions and site assignments govern access; UI visibility and cached claims are insufficient.
 - Shared DEV SQL remains serialized, checksummed and forward-fix only. See [Decision 0003](../decisions/0003-gymtrack-shared-dev-migrations.md).
 - Keep product implementation, merge, CI, DEV delivery, hosted acceptance and production approval as distinct evidence states.
+- Retain CircleCI for app validation; preserve all required test jobs, protected exact-SHA evidence and branch-scoped cache trust. The database `medium` experiment did not improve the critical path and was reverted (MR !124).
 
 ## Open questions
 
@@ -114,18 +117,21 @@ Permanent staff deletion; member login/portal; ownership transfer; new cash coll
 - What retention purpose/duration and cross-organization identity behavior will be approved before permanent deletion?
 - Exact served application/configuration parity, complete authenticated automated evidence and earlier affected-account recovery remain unresolved.
 - The previous Atlas page's 2026-10-25 draft/bootstrap observations were not reverified for unrelated work in this update.
+- The seven-day post-cache-retention billed usage and a comparable ten-run post-split p50/p90 are not yet measured; the database remains the CI bottleneck.
 
 ## Next steps
 
 1. Plan Sprint 3 from GYM-88, GYM-75, GYM-86 and GYM-97; do not repeat already accepted manual checks without a regression reason.
 2. Resolve deletion policy before implementing irreversible deletion.
 3. Obtain separate evidence and authorization for any production release.
+4. After enough normal runs accumulate, reconcile CircleCI credits/storage and compute a comparable post-split latency median. Keep database sharding deferred.
 
 ## Links
 
 - [Sprint closure and accepted scope](https://linear.app/egawilldoit/issue/GYM-71)
 - [Deferred acceptance and original matrix](https://linear.app/egawilldoit/issue/GYM-88)
 - [Canonical code](https://gitlab.com/trackgym101/gymsas) · [Linear GYM](https://linear.app/egawilldoit/team/GYM)
+- [CI/CD optimization delivery report](../../raw/gymtrack/2026-11-02-circleci-performance-optimization.md) · [Merged MR !124](https://gitlab.com/trackgym101/gymsas/-/merge_requests/124)
 - [Helm](helm.md) · [Agent delivery workflow](../concepts/agent-delivery-workflow.md)
 
 Source boundary: Linear states rechecked on 2026-10-30; delivery and browser outcomes summarized from the owner's authorized review session and supplied reports. This public page contains conclusions and source links, not private account data, credentials, raw chats, screenshots or runtime logs.
