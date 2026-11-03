@@ -1,7 +1,7 @@
 ---
 type: project
 status: active
-updated: 2026-11-01
+updated: 2026-11-03
 related: [agent-delivery-workflow, 0005-ega-skills-automatic-production-release]
 ---
 
@@ -10,6 +10,13 @@ related: [agent-delivery-workflow, 0005-ega-skills-automatic-production-release]
 Governed skill registry and read-only MCP for coding agents. The 126-skill catalog, including nine TStack skills, is live. The MCP release flow is now automatic; separate Console and client acceptance remain open unless freshly demonstrated.
 
 ## Current state
+
+
+### CI optimization shipped (2026-11-03)
+
+Two GitHub PRs are now merged: [#197](https://github.com/egawilldoit/ega-skills/pull/197), Batch 1 config reuse/readiness diagnostics (merge `64f217b`), and [#198](https://github.com/egawilldoit/ega-skills/pull/198), Batches 2–5 concurrency and fail-closed Windows/Linux sharding (merge `10139052c`). [Post-merge `main` CI 41676267240](https://github.com/egawilldoit/ega-skills/actions/runs/41676267240) passed on that exact final SHA. The separate [live-release verifier 41676899300](https://github.com/egawilldoit/ega-skills/actions/runs/41676899300) was **IN PROGRESS (not certified)** at this record; the older [Batch 1 live verifier](https://github.com/egawilldoit/ega-skills/actions/runs/41624226642) failed because the Vercel deployment check remained pending. These are **not** CI-test failures and do not prove a canonical production promotion.
+
+Measured historical Linux PR median **360 s** versus final-head **186 s** (~48% lower); historical full Linux/Windows median **1,056 s** versus five-run optimized median **489 s** (~54% lower). These are mixed-cohort descriptive comparisons, **not** compute-cost reductions; runner-minutes remain approximately neutral. Final sharded discovery was **190 files**, Windows **95+95 / 2,247 tests**, Linux core **76+76 / 1,451 tests**. Aggregators retain the exact release-required names and `ci-gate` rejects incomplete, failed or unexpectedly skipped shards. Two hosted negative-injection runs proved failure propagation. [Full 0–5 technical report](../../raw/ega-skills/2026-11-03-ci-cd-performance-optimization.md) contains all benchmarks, corrections, run URLs, residual risks and rollback.
 
 ### Production verified 2026-11-01
 
@@ -83,18 +90,25 @@ The supplied #193 report records focused adapter tests and a real superseded-rel
 
 ## Open questions
 
+- Latest `main@10139052c` CI succeeded; complete the separately tracked live production verification before treating this optimization merge as production release acceptance.
 - Destructive recovery needs a disposable-project live demonstration before full platform recovery certification.
 - Console owner/browser acceptance and hosted OpenCode acceptance were not re-audited by this MCP release. [EGA-731](https://linear.app/egawilldoit/issue/EGA-731) and [EGA-732](https://linear.app/egawilldoit/issue/EGA-732) had unresolved acceptance in the older Atlas snapshot; check current issue state before acting.
 - The earlier published v2.0.0 tag versus package 2.0.1 discrepancy was not re-audited here. A hosted catalog digest is separate from package/tag release status.
 
 ## Next steps
 
-1. Use the automatic path for the next authorized change; retain its source, canonical and verifier evidence.
-2. When recovery certification becomes the active task, demonstrate failure/recovery in a disposable Vercel project.
-3. Recheck EGA-731/EGA-732 and package/tag status before claiming complete Console/client acceptance.
+1. Recheck production-verification run `41676899300` and canonical deployment for `main@10139052c`; reconcile the older pending-check failure.
+2. Investigate the pre-existing `ega-719` HTTPS mock/timeout flake; keep the 403 assertion intact.
+3. Validate release-target `release/2.0` status checks against the new aggregators before a release promotion.
+4. Use the automatic path for the next authorized change; retain its source, canonical and verifier evidence.
+5. When recovery certification becomes the active task, demonstrate failure/recovery in a disposable Vercel project.
+6. Recheck EGA-731/EGA-732 and package/tag status before claiming complete Console/client acceptance.
 
 ## Links
 
+- [CI optimization, full Batch 0–5 Atlas record](../../raw/ega-skills/2026-11-03-ci-cd-performance-optimization.md)
+- [Merged Batch 1 PR #197](https://github.com/egawilldoit/ega-skills/pull/197) and [Batch 2–5 PR #198](https://github.com/egawilldoit/ega-skills/pull/198)
+- [Merged-sha main CI](https://github.com/egawilldoit/ega-skills/actions/runs/41676267240)
 - [Automatic release: operating source of truth](https://github.com/egawilldoit/ega-skills/blob/main/docs/operations/AUTOMATIC-RELEASE.md)
 - [Operator runbook](https://github.com/egawilldoit/ega-skills/blob/main/docs/operations/RELEASE-2.0-RUNBOOK.md)
 - [MCP Vercel configuration](https://github.com/egawilldoit/ega-skills/blob/main/packages/mcp/VERCEL.md)
