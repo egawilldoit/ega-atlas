@@ -137,7 +137,7 @@ Permanent staff deletion; member login/portal; ownership transfer; new cash coll
 
 ## Links
 
-- [Gymtrack UI unification — visual delivery record and architecture](../../raw/gymtrack/2026-11-11-frontend-ui-unification-delivery.md) · [MR !134](https://gitlab.com/trackgym101/gymsas/-/merge_requests/134) · [MR !135](https://gitlab.com/trackgym101/gymsas/-/merge_requests/135)
+- [Gymtrack UI unification — full-MR audited handoff and evidence](../../raw/gymtrack/2026-11-11-frontend-ui-unification-delivery.md) · [MR !134](https://gitlab.com/trackgym101/gymsas/-/merge_requests/134) · [MR !135](https://gitlab.com/trackgym101/gymsas/-/merge_requests/135)
 
 - [Sprint closure and accepted scope](https://linear.app/egawilldoit/issue/GYM-71)
 - [Deferred acceptance and original matrix](https://linear.app/egawilldoit/issue/GYM-88)

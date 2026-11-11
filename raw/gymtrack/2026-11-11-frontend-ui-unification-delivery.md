@@ -14,7 +14,7 @@
 |---|---|---|
 | Merged code | [MR !135](https://gitlab.com/trackgym101/gymsas/-/merge_requests/135) merged into [MR !134](https://gitlab.com/trackgym101/gymsas/-/merge_requests/134); then !134 merged into `develop` on 2026-11-11 | GitLab confirms merge commits |
 | Final `develop` | `d7882f590230a1dd6c6be9c63f8aec5e96049401` | GitLab branch read |
-| Code scope | 76 changed paths in !134's final diff, all inside `apps/web/src/app/**`; !135 contributes 11 paths already included in that final diff | Source diff, not a claim about every runtime behavior |
+| Code scope | 76 changed paths and 40 commit entries in the merged !134 history, all inside `apps/web/src/app/**`; !135's 11 changed paths are **already included**, not additional | Source diff, not a claim about every runtime behavior |
 | UI route coverage | 35 page routes accounted for: 33 visual routes and two redirect-only routes | Agent-reported route ledger, reconciled with GitLab |
 | Post-merge CircleCI | [Protected-branch workflow](https://app.circleci.com/workflow/913b9701-90f0-4a3d-b7f7-a972991c054e) succeeded on exact final merge SHA | Workflow status, not authenticated hosted acceptance |
 | Vercel | Web and API checks succeeded on final `develop` SHA | Build/deployment checks; no claim of production promotion |
@@ -43,6 +43,23 @@ This sequence matters. The skeleton update improved appearance but did not solve
 **Original vector illustration, not a captured application screenshot.** During a route fallback, the old implementation rendered an empty gutter. The final design retains the real sidebar and replaces only the content on the right.
 
 The authorized source screenshots remain with the [frontend redesign evidence](https://gitlab.com/trackgym101/gymsas/-/merge_requests/134) and [persistent shell evidence](https://gitlab.com/trackgym101/gymsas/-/merge_requests/135). They were **not** copied into this public repository because those files can include test identities or private organization details.
+
+
+### Source screenshots and image evidence
+
+The original test captures remain inside private GitLab. Atlas's existing diagrams are original, public-safe conceptual illustrations; screenshots with possible fixture identifiers were **not copied into this public repository**.
+
+| Image set | Located in | Evidence and gap |
+|---|---|---|
+| Dashboard 1440/1920/768/375, Owner/Manager/custom/suspended, drawer/collapse | [MR !134 dashboard section](https://gitlab.com/trackgym101/gymsas/-/merge_requests/134) | Visual system, layout and role states |
+| Members list, modal, error preservation, edit/detail and mobile | [MR !134 screens 1–4](https://gitlab.com/trackgym101/gymsas/-/merge_requests/134) | Dialog and Members journey |
+| Memberships/Plans list, create/prefilled/detail/edit | [MR !134 screens 5–12](https://gitlab.com/trackgym101/gymsas/-/merge_requests/134) | Operational journey visuals |
+| Staff, Roles, chooser/no-access, login/invite and public screens | [MR !134 screens 13–34](https://gitlab.com/trackgym101/gymsas/-/merge_requests/134) | Restyled routed surfaces |
+| Actual streamed Roles list/create/detail + Admin queue, pending indicator | [MR !134 loading evidence](https://gitlab.com/trackgym101/gymsas/-/merge_requests/134) | Controlled delayed RSC/HTTP captures |
+| Real sidebar during pending/loaded, cold Memberships, collapsed Plans | [MR !135 screenshots](https://gitlab.com/trackgym101/gymsas/-/merge_requests/135) | Persistent aside DOM probe and visual continuity |
+
+Still **not independently captured**: populated Admin application detail; individual Plans/Memberships streaming loaders; reduced-motion screenshots; hosted authenticated completion of the new shell journeys.
+
 
 ### Visual system
 
@@ -135,7 +152,7 @@ These are the approved design directions and code-level behaviors. Full visual a
 
 ### Staff and Roles
 
-- Staff list/detail, staff action forms and role management screens were restyled.
+- Staff list/detail and Roles list/create/detail screens were restyled. Staff action-form internals and some RoleEditForm controls were **not** fully migrated; legacy slate styling remains.
 - Staff provisioning idempotency, uncertain outcomes, reassignment and deactivation flows remain governed by their original actions and checks.
 - Owner-only role creation/editing, permission catalog availability and stored-versus-effective permission wording remain intact.
 
@@ -151,7 +168,30 @@ These are the approved design directions and code-level behaviors. Full visual a
 - Admin organization directory/create/detail and application queue/detail use the admin-specific dark design and existing AdminShell.
 - Approval, rejection, retry and credential reissue use their original confirmation and idempotency rules.
 - Admin layout permissions remain separate from staff dashboard navigation.
-- Public landing and the French `/book-demo` experience received styling only; field, consent, submission and content semantics were retained.
+- Public landing changed its CSS module only. The French `/book-demo` page and form both changed presentation, and the unused `book-demo.module.css` was deleted. Copy, fields, consent and submission semantics were retained.
+
+
+### Complete merged-diff review (76 paths)
+
+The full final [MR !134 diff](https://gitlab.com/trackgym101/gymsas/-/merge_requests/134/diffs), all 40 listed commits and the 11 changed files in stacked [MR !135](https://gitlab.com/trackgym101/gymsas/-/merge_requests/135/diffs) were reviewed. The !135 files are contained **within** the 76-file final !134 diff. Earlier 55-file and 69-file counts refer to historical checkpoints.
+
+| Component group | Modified source | What was delivered |
+|---|---|---|
+| Dashboard + sidebar | `dashboard/page.tsx`, `dashboard-frame.tsx`, `dashboard-navigation.tsx` | Verified-org quick links, owner-filtered navigation, 248px/76px sidebar, mobile drawer, delayed pending dot |
+| Persistent sidebar | `dashboard/layout.tsx`, `dashboard-shell.tsx`, `workspace-shell.tsx` | One real sidebar above route loaders; page-registered organization display projection |
+| Loading | `loading-skeletons.tsx` and descendant `loading.tsx` files | Contextual list/form/detail placeholders, inline Memberships/Member fallbacks, Admin queue/detail skeletons |
+| Members | List/new/detail/edit, `add-member-dialog.tsx`, `member-form.tsx`, member-memberships display | Radix Add dialog and direct-URL fallback; no new business action |
+| Memberships | List/new/detail/edit, filters, prefilled-member and related list components | Filter and lookup UI, relation and status presentation |
+| Plans | List/new/detail/edit and failure components | Workspace screens and Owner-scoped actions unchanged |
+| Staff / Roles | Staff list/detail, Roles list/new/detail and error presentation | Chrome/style changes, not a full rewrite of the Staff and Role form internals |
+| Identity/recovery | Login, Start, Invite, organization chooser, no-access/no-sites, first-site onboarding | Unified dark route-local frames; auth and redirects left intact |
+| Admin | Organization list/table/create/detail; applications list/detail and decision-form presentation | Admin-specific styling; Admin layout authorization untouched |
+| Public | Landing CSS module; Book Demo page/form; deleted old Book Demo CSS module | Landing CSS-only, Book Demo form/page styling |
+
+**No changed paths** under the backend, API transport libraries, auth/session implementation, actions/contracts, SQL/RLS, migrations, CI configuration or dependency files. This proves the changed-file boundary, not that every runtime request is identical.
+
+**Security implementation nuance:** In `dashboard-shell.tsx`, `unregister(token)` checks the current token, but `register(next, token)` directly replaces the projection and current token, and `WorkspaceScopeClear` uses an unscoped `clear()` in a passive effect. It is inaccurate to call the entire registration/clear mechanism token-ordered. `WorkspaceShell` also always registers `organizationCount={1}`. Multi-org queryless navigation, interrupted history transitions, logout/login-as-another-account and denial/outage races remain worth testing. These are **presentation correctness risks**, not demonstrated backend access bypasses.
+
 
 ## 6. Persistent-shell architecture
 
@@ -174,9 +214,9 @@ Paths shortened to `apps/web/src/app/` unless otherwise stated.
 
 1. Each page performs its existing server-side session, organization and capability checks.
 2. The successful page passes a minimal, serializable navigation projection via `WorkspaceScope`.
-3. The client layout displays verified organization and role information only when its projection matches the selected organization context.
+3. The client layout checks whether the last registered projection matches the selected organization query, or declares a no-query projection compatible when `organizationCount === 1`. This is **UI display state**, not a fresh access check.
 4. A different organization in `?organization=` rejects the existing projection and shows a neutral sidebar until the destination verifies.
-5. Known denied/outage states clear the projection. The layout itself does not fetch `/v1/me/context` or decide API authorization.
+5. Known denied/outage views mount `WorkspaceScopeClear`, which clears the projection in a client effect. This is eventual UI cleanup, not proof that older information cannot paint before the effect runs. The layout itself does not fetch `/v1/me/context` or decide API authorization.
 6. Route-level `loading.tsx` swaps the content column but not the shared layout or its sidebar DOM node.
 
 **Why not put `getMeContext()` in the layout?** Next.js layouts persist on client transitions and do not rerender for each query-string change. A layout-owned server snapshot would become stale after organization switching. The page-fed projection avoids another API fetch solely to populate the sidebar.
@@ -225,6 +265,31 @@ Agent-reported DOM and browser evidence showed the *same* desktop `aside` node s
 
 CircleCI's feature validation includes `web-validation`, `api-unit-validation`, `api-e2e-validation`, `delivery-validation`, `database-validation`, `candidate-catalog` and `validation-gate`. The protected-branch workflow is a separate post-merge result. Do not conflate successful builds with full product acceptance.
 
+
+### Commit-by-commit delivery checkpoints
+
+The merged !134 history contains **40 GitLab commit entries**, including the two !135 shell commits and their merge. The historical MR description still includes statements such as "dashboard-only", "Draft" and "no layout" that applied **before** the final integration.
+
+| Batch | Head | Evidence recorded |
+|---|---|---|
+| Initial dashboard, CI guard repair | `c914d0b` → `f170f7f` | Initial `web-validation` failed the existing dashboard `staff-surfaces` guard (page-owned verified links, fixed width and platform-admin gate). Repaired in code, with no test weakening |
+| Members list | `54124ac` | 28/28 browser, [CircleCI](https://app.circleci.com/workflow/7f0cc725-b5ef-49bd-a938-bc6d285221ed) |
+| Add Member modal | `737788d` | 32/32 browser, [CircleCI](https://app.circleci.com/workflow/b702850c-77d2-4407-b9ce-f3914846e56e) |
+| Member detail/edit | `061f7a9` | 11/11 browser, [CircleCI](https://app.circleci.com/workflow/41b3a66b-186a-4e8f-b6cc-8d3cdf1eae72) |
+| Memberships 4 routes and Plans list | `80642d4` | 32/32 browser, [CircleCI](https://app.circleci.com/workflow/2106560c-efaa-46ba-abbb-40ea252d30cd) |
+| Plan create/detail/edit and Staff list/detail | `4abb6e7` | 22/22 browser, [CircleCI](https://app.circleci.com/workflow/24d9b739-0ba5-4f07-bbcf-6c909077c5d1) |
+| Roles, org picker and no-access | `d9130f0` | 14/14 browser, [CircleCI](https://app.circleci.com/workflow/9f9279dc-7c75-40ff-b758-3577edde91ad) |
+| No-sites, onboarding, login/start/invite | `b6fdd03` | 7/7 browser; no first-site provisioning fixture, [CircleCI](https://app.circleci.com/workflow/efc5e5b0-ce49-4e10-b231-938ce45a38a6) |
+| Invite/account and Admin screens 26–29 | `f097288` | CI_GREEN route ledger; **no dedicated detailed per-screen browser evidence section** in the merged MR description |
+| Admin detail, landing, Book Demo, redirects | `3c8f3c2` | 7/7 public/redirect browser; Admin detail fixture absent, [CircleCI](https://app.circleci.com/workflow/69aa4e46-be13-4983-a640-1c518c2b0a78) |
+| Loading skeletons | `b5e93f0` | [CircleCI](https://app.circleci.com/workflow/a954139a-9588-4671-a6d0-49823f97c96f) |
+| Pending dot and skeleton alignment | `86f7e23` | Actual streamed screenshots, [CircleCI](https://app.circleci.com/workflow/05fe2031-caeb-44ca-8bac-2dbd4f98e66e) |
+| Persistent sidebar !135 | `fdf6d77` → `4280b7e` | 16 agent-reported browser assertions, [stacked CI](https://app.circleci.com/workflow/824467d3-3dae-45a8-b133-2cdb3a64382e) and [combined CI](https://app.circleci.com/workflow/3be8b082-f22f-4e3e-8a80-9fcd2b67e792) |
+| Final merged develop | `d7882f5` | [Protected CI](https://app.circleci.com/workflow/913b9701-90f0-4a3d-b7f7-a972991c054e) and web/API Vercel commit checks green |
+
+The per-batch browser counts are supplied test receipts, **not a fresh rerun** or proof of 178 unique hosted end-to-end journeys.
+
+
 ### What did not change
 
 The !134 final diff is limited to `apps/web/src/app/**`. There are no changed backend modules, transport/API library modules, contracts, auth/session implementations, SQL migrations, RLS rules, CI definitions, package manifests or dependency lockfiles in the final MR diff.
@@ -236,8 +301,8 @@ This is **change-scope proof**, not an empirical guarantee that every UI action 
 | Area | Residual issue | Recommended verification |
 |---|---|---|
 | Tenant navigation | Last verified same-org sidebar may remain visible while another page is pending | Test navigation, history and explicit org-query changes |
-| No-query selection | The page projection's organization-count assumptions need review for multi-org accounts | Test direct dashboard links without `?organization=` using multi-org principals |
-| Failure clearing | Client effect timing may briefly retain prior presentation during a failed route | Verify denied, outage, expired session and interrupted-navigation transitions |
+| No-query selection | `WorkspaceShell` registers `organizationCount={1}` on operational routes even for multi-org accounts; the no-query provider branch trusts that value | Test direct dashboard links without `?organization=` using multi-org principals |
+| Failure clearing | `WorkspaceScopeClear` calls unscoped `clear()` inside `useEffect`; `unregister` is token-checked but `register` is not generation-ordered | Verify denied, outage, expired session and interrupted-navigation transitions |
 | Remote revocation | Sidebar updates when fresh verified data arrives; it cannot instantly infer remote revocation | Test active-session role removal followed by navigation |
 | Authentication continuity | Logout/login-as-different-account not covered by the dedicated 16-assertion shell pass | Perform authenticated browser test with a second disposable principal |
 | Unknown route | Default Next 404/error may lack `WorkspaceScopeClear` | Test unknown dashboard route and failed RSC path |
@@ -287,6 +352,12 @@ Do **not** use production identities, actual customer details or destructive rec
 - **Page-verified projection** rather than layout-local fetching or trusting URL organization IDs.
 - **Stacked MR for authorization-adjacent shell work**; merge it into the redesign first, then merge the combined result to `develop`.
 - **Acceptance tiers remain separate:** code merge, CI, preview readiness, hosted user acceptance and production rollout are different milestones.
+
+
+### Corrections made by the full-MR source review
+
+The earlier handoff understated changed form components, described registration token safety too broadly and did not retain the original CI guard failure. It also lacked the checkpoint links and separated visual evidence catalogue above. MR !134's route ledger includes screens 25–29, but the same detailed verification narrative is absent; that cannot be filled from assumptions. **Owner approvals and green CI do not establish independent security or hosted acceptance.**
+
 
 ## 12. Rollback and follow-up
 

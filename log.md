@@ -131,3 +131,6 @@ Published the full public-safe EGA Skills CI Batch 0–5 record from merged PRs 
 
 ## [2026-11-11] ingest | raw/gymtrack/2026-11-11-frontend-ui-unification-delivery.md, wiki/projects/gymtrack.md, now.md, index.md | ChatGPT
 Published a public-safe illustrated release handoff for merged Gymtrack UI MRs !134/!135, including 35-route coverage, the verified page-context/persistent-sidebar design, sanitized SVG diagrams, exact protected develop CI evidence, test-evidence boundaries and unresolved hosted/security-transition cases. Synced Gymtrack current state and navigation index. No Gymtrack code, data or production release changes.
+
+## [2026-11-11] update | raw/gymtrack/2026-11-11-frontend-ui-unification-delivery.md, wiki/projects/gymtrack.md | ChatGPT
+Audited the full merged !134/!135 source histories (76 final paths, 40 commit entries), corrected form-scope and persistent-sidebar token claims, added CI checkpoint trail, private screenshot index and explicit missing fixture/QA distinctions. No product code, API, deployment or secrets changed.
