@@ -134,3 +134,6 @@ Published a public-safe illustrated release handoff for merged Gymtrack UI MRs !
 
 ## [2026-11-11] update | raw/gymtrack/2026-11-11-frontend-ui-unification-delivery.md, wiki/projects/gymtrack.md | ChatGPT
 Audited the full merged !134/!135 source histories (76 final paths, 40 commit entries), corrected form-scope and persistent-sidebar token claims, added CI checkpoint trail, private screenshot index and explicit missing fixture/QA distinctions. No product code, API, deployment or secrets changed.
+
+## [2026-11-11] update | raw/assets/gymtrack-frontend-route-coverage.svg | ChatGPT
+Added an original, public-safe 35-route coverage diagram and embedded it in the audited frontend release record. Three visual assets now illustrate the loading UX, verified-context shell and route inventory; private source screenshots remain linked only through GitLab.
