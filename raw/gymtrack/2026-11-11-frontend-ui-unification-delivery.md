@@ -78,6 +78,10 @@ These are the approved design directions and code-level behaviors. Full visual a
 
 ## 4. Route coverage (35 total)
 
+![Original diagram of Gymtrack's 18 dashboard, eight identity/recovery, five Admin, two public and two redirect routes](../assets/gymtrack-frontend-route-coverage.svg)
+
+This is an original conceptual route map. It does not reproduce private test screenshots or establish hosted acceptance.
+
 **Status vocabulary:** “UI integrated” means the route received the redesign or compatible styling. It does **not** mean every negative, mobile or hosted scenario passed. “Redirect preserved” means intentionally no visual page.
 
 | # | Area | Route | Delivered experience | Status |
