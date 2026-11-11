@@ -1,7 +1,7 @@
 ---
 type: project
 status: active
-updated: 2026-11-02
+updated: 2026-11-11
 related: [helm, agent-delivery-workflow, 0003-gymtrack-shared-dev-migrations, 0004-gymtrack-sprint-2-acceptance]
 ---
 
@@ -14,6 +14,9 @@ Multi-tenant gym-management SaaS. Sprint 2 delivered application-led onboarding,
 [GYM-71 is Done](https://linear.app/egawilldoit/issue/GYM-71). This records owner acceptance of delivered scope, **not full hosted security certification or production readiness**. [Decision 0004](../decisions/0004-gymtrack-sprint-2-acceptance.md) explains the changed closure boundary.
 
 Canonical code: [GitLab trackgym101/gymsas](https://gitlab.com/trackgym101/gymsas), integration branch `develop`. The sprint was exercised on [DEV web](https://dev.gymtrack.space) and [DEV API](https://api-dev.gymtrack.space). Project remains active.
+
+**Frontend redesign integrated (2026-11-11):** [MR !135](https://gitlab.com/trackgym101/gymsas/-/merge_requests/135) (persistent verified sidebar) merged into [MR !134](https://gitlab.com/trackgym101/gymsas/-/merge_requests/134) (full UI unification), then !134 merged into `develop@d7882f590230a1dd6c6be9c63f8aec5e96049401`. All 35 routes are accounted for: 33 styled UI routes and two preserved redirects. Final MR diff: 76 files, all inside `apps/web/src/app/**`. The [protected-branch CI](https://app.circleci.com/workflow/913b9701-90f0-4a3d-b7f7-a972991c054e) and Vercel web/API checks passed on the exact merge SHA. This establishes integration and delivery checks, **not** hosted QA, remote-revocation certification, or production promotion. See the [illustrated full release handoff](../../raw/gymtrack/2026-11-11-frontend-ui-unification-delivery.md).
+
 
 **CI delivery (2026-11-02):** [MR !124](https://gitlab.com/trackgym101/gymsas/-/merge_requests/124) merged to `develop@a23dab5`: web, API unit, API HTTP E2E and delivery checks now run as four parallel CircleCI jobs, with a strict workflow-specific evidence contract and safer cache policy. The exact merged SHA passed [protected-branch validation](https://app.circleci.com/workflow/792a3dc9-6b7b-4c34-96bc-5b768af5ee32). The last pre-merge run was **205.4s**; seven small-executor pilot runs have a **provisional 216.8s median** versus the historical **328.97s** median. Billed credits and a stable new p50 remain unverified. [Full CI/CD report and 43-point T3 Code-derived comparison](../../raw/gymtrack/2026-11-02-circleci-performance-optimization.md). This is CI acceptance, not application Production certification.
 
@@ -115,6 +118,8 @@ Permanent staff deletion; member login/portal; ownership transfer; new cash coll
 
 ## Open questions
 
+- Complete hosted acceptance of the merged frontend, especially multi-organization no-query navigation, role/session revocation, logout/login-as-different-user, default 404/failure clearing and Admin application detail. A page-fed sidebar projection preserves navigation, but is never an authorization source.
+
 - Which deferred GYM-88 cases will be scheduled first in Sprint 3, using identified revisions and dedicated fixtures?
 - What retention purpose/duration and cross-organization identity behavior will be approved before permanent deletion?
 - Exact served application/configuration parity, complete authenticated automated evidence and earlier affected-account recovery remain unresolved.
@@ -123,12 +128,16 @@ Permanent staff deletion; member login/portal; ownership transfer; new cash coll
 
 ## Next steps
 
+1. Validate the merged frontend against a known deployed DEV SHA using disposable Owner/Manager/multi-organization fixtures; focus on sidebar persistence, denial and context reset. [Release handoff](../../raw/gymtrack/2026-11-11-frontend-ui-unification-delivery.md).
+
 1. Plan Sprint 3 from GYM-88, GYM-75, GYM-86 and GYM-97; do not repeat already accepted manual checks without a regression reason.
 2. Resolve deletion policy before implementing irreversible deletion.
 3. Obtain separate evidence and authorization for any production release.
 4. After enough normal runs accumulate, reconcile CircleCI credits/storage and compute a comparable post-split latency median. Keep database sharding deferred.
 
 ## Links
+
+- [Gymtrack UI unification — visual delivery record and architecture](../../raw/gymtrack/2026-11-11-frontend-ui-unification-delivery.md) · [MR !134](https://gitlab.com/trackgym101/gymsas/-/merge_requests/134) · [MR !135](https://gitlab.com/trackgym101/gymsas/-/merge_requests/135)
 
 - [Sprint closure and accepted scope](https://linear.app/egawilldoit/issue/GYM-71)
 - [Deferred acceptance and original matrix](https://linear.app/egawilldoit/issue/GYM-88)

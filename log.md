@@ -128,3 +128,6 @@ Expanded the complete EGA House PR #341 history from original 100-run agent inve
 
 ## [2026-11-03] ingest | raw/ega-skills/2026-11-03-ci-cd-performance-optimization.md, wiki/projects/ega-skills.md, now.md, index.md | ChatGPT
 Published the full public-safe EGA Skills CI Batch 0–5 record from merged PRs #197/#198, owning audit/results/runbooks and exact GitHub job evidence: 43-technique decision audit, config reuse, readiness diagnostics, measured concurrency, 190-file Windows/Linux sharding, negative failure-injection gates, performance, runner-minute tradeoffs, rollback and outstanding live-release check. Independently verified green post-merge `main@10139052c` CI; kept live-release-verification state separate. No CI, runtime or production change was made by this Atlas-only commit.
+
+## [2026-11-11] ingest | raw/gymtrack/2026-11-11-frontend-ui-unification-delivery.md, wiki/projects/gymtrack.md, now.md, index.md | ChatGPT
+Published a public-safe illustrated release handoff for merged Gymtrack UI MRs !134/!135, including 35-route coverage, the verified page-context/persistent-sidebar design, sanitized SVG diagrams, exact protected develop CI evidence, test-evidence boundaries and unresolved hosted/security-transition cases. Synced Gymtrack current state and navigation index. No Gymtrack code, data or production release changes.
