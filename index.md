@@ -7,9 +7,9 @@ Start with [now.md](now.md). Every wiki page is listed here once.
 | Page | Status | Summary |
 |---|---|---|
 | [Gymtrack](wiki/projects/gymtrack.md) | active | Sprint 2 accepted; full 35-route frontend redesign and persistent sidebar merged to develop@d7882f5 with protected CI green; hosted acceptance and Sprint 3 security/deletion pending |
-| [Helm](wiki/projects/helm.md) | active | Native T3 control plane; v0.2 DEV frontend deployed, Production v0.1 patched, acceptance open |
-| [EGA Skills](wiki/projects/ega-skills.md) | active | CI Batches 0–5 shipped (#197/#198), ~48% faster PR and ~54% faster full CI vs historical; live-release acceptance tracked separately |
-| [EGA House](wiki/projects/ega-house.md) | active | CI PR #341 merged; exact-SHA main full CI green in 190s; app deployment/E2E/CPU tracked separately |
+| [Helm](wiki/projects/helm.md) | active | Native T3 control plane; newer native T3 changes merged to develop; older DEV frontend receipt, Production v0.1 patch; acceptance open |
+| [EGA Skills](wiki/projects/ega-skills.md) | active | CI batches shipped; 2026-11-03 release verifier failed; newer main and canonical acceptance need fresh check |
+| [EGA House](wiki/projects/ega-house.md) | active | Money and floating-timer PRs merged through #404; production migrations, E2E and CPU acceptance separate |
 
 ## Areas
 
