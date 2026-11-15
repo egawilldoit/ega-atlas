@@ -1,7 +1,7 @@
 ---
 type: project
 status: active
-updated: 2026-11-02
+updated: 2026-11-15
 related: [agent-delivery-workflow, helm]
 ---
 
@@ -10,6 +10,9 @@ related: [agent-delivery-workflow, helm]
 Personal productivity platform (Project → Goal → Task → Timer → Review), with web/mobile clients, standalone API and agent integrations. W0–W3/shell are merged, as is [CI PR #341](https://github.com/egawilldoit/Ega-House-Platform/pull/341), with the exact post-merge main CI successful. Authenticated E2E and measured Vercel Active CPU savings remain unverified.
 
 ## Current state
+
+**Source checkpoint 2026-11-15:** GitHub `main@a81cc417d52621b49f9f162707cfa4349bc4e0a9` is newer than the CI baseline below. [PRs #394–#403](https://github.com/egawilldoit/Ega-House-Platform/pulls?q=is%3Apr+is%3Amerged) include merged Money tracking, obligations, reserves, day close and period rollover work (2026-11-11–13); [#404](https://github.com/egawilldoit/Ega-House-Platform/pull/404) merged a Document Picture-in-Picture floating focus timer on 2026-11-15. These are **source-merged**, not verified Production migrations, authenticated browser acceptance or measured CPU savings. Older deployment/CI evidence below applies to its dated SHA only.
+
 
 - [Ega-House-Platform](https://github.com/egawilldoit/Ega-House-Platform) `main@4c426a1d0a6be1d2e22b34860ba96db7236b9001`, verified 2026-11-02. [PR #341](https://github.com/egawilldoit/Ega-House-Platform/pull/341) merged at 21:16 UTC; [post-merge main CI](https://github.com/egawilldoit/Ega-House-Platform/actions/runs/41526874883) **success: 190s, 17 successful jobs and 1 informational skip**. [Full CI/CD delivery report, results and 43-technique audit](../../raw/ega-house/2026-11-02-ci-cd-performance-and-release-safety.md). [PR #339](https://github.com/egawilldoit/Ega-House-Platform/pull/339) was already merged, with separate manual acceptance/E2E boundaries.
 - Linear [W0 EGA-771](https://linear.app/egawilldoit/issue/EGA-771), [W1 EGA-772](https://linear.app/egawilldoit/issue/EGA-772), [W2 EGA-773](https://linear.app/egawilldoit/issue/EGA-773) and [W3 EGA-774](https://linear.app/egawilldoit/issue/EGA-774) all read **Done** (latest updates 2026-10-27–29). Corresponding feature PRs are merged into `main`, including [Areas #328](https://github.com/egawilldoit/Ega-House-Platform/pull/328) and [Home #333](https://github.com/egawilldoit/Ega-House-Platform/pull/333). Delivered code includes task interactions, saved views/table/calendar/timeline, favourites, notifications, archive, agent attribution, areas, project files, estimates, templates and Home improvements. These issue closures do **not** independently certify deployed migrations, browser flows or Production acceptance.
