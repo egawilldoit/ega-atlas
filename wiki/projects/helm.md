@@ -1,7 +1,7 @@
 ---
 type: project
 status: active
-updated: 2026-10-25
+updated: 2026-11-15
 related: [gymtrack, agent-delivery-workflow, 0002-native-t3-execution-ownership]
 ---
 
@@ -11,7 +11,7 @@ Owner-facing control plane for **Linear issue → native T3 Code execution → t
 
 ## Current state
 
-**Checked 2026-10-25.** v0.2 code is merged to `develop` and its frontend is deployed to DEV; **full hosted v0.2 acceptance is still open**. Production remains v0.1 plus an independently approved security patch.
+**Historical deployment check 2026-10-25; source rechecked 2026-11-15.** v0.2 code is merged to `develop` and its frontend is deployed to DEV; **full hosted v0.2 acceptance is still open**. Production remains v0.1 plus an independently approved security patch.
 
 | Layer | Verified code/deployment state | Acceptance boundary |
 |---|---|---|
@@ -20,6 +20,10 @@ Owner-facing control plane for **Linear issue → native T3 Code execution → t
 | GitHub Production | `main@d17c4f575f04af111fe8b172fc7f2e046dbead27` | v0.1 with security-only patch, **not v0.2** |
 | Vercel Production | READY, `live-helm.egawilldoit.online` aliases the same `main` SHA | Deployment READY; no new owner-browser acceptance claim |
 | Product | [EGA-685](https://linear.app/egawilldoit/issue/EGA-685) Backlog, [EGA-768](https://linear.app/egawilldoit/issue/EGA-768) Backlog/HOLD | R01–R12 owner DEV journey and Production promotion **not accepted** |
+
+### Newer source integration (checked 2026-11-15)
+
+GitHub `develop@a0b89caf451a6b63f774b5a428ea3c5daf037ac0` contains merged [#40–#47](https://github.com/EGA-BUILDS/helm/pulls?q=is%3Apr+is%3Amerged): external-MCP capability documentation, cross-project thread overview, Full-access OAuth tier/default, duplicate-proof direct-launch intent ledger, activity auto-refresh, native thread identity and UI fixes. These are **merged source changes**, not proof of aligned Convex DEV deployment, owner DEV acceptance or Production v0.2 promotion. The older `develop@90b3852` deployment receipt below is historical, not a current deployment claim.
 
 ### Merged integration and security changes
 
