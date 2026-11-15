@@ -137,3 +137,6 @@ Audited the full merged !134/!135 source histories (76 final paths, 40 commit en
 
 ## [2026-11-11] update | raw/assets/gymtrack-frontend-route-coverage.svg | ChatGPT
 Added an original, public-safe 35-route coverage diagram and embedded it in the audited frontend release record. Three visual assets now illustrate the loading UX, verified-context shell and route inventory; private source screenshots remain linked only through GitLab.
+
+## [2026-11-15] update | helm, ega-house, now.md, index.md | ChatGPT
+Rechecked GitHub source heads: Helm develop a0b89ca with merged #40–#47; EGA House main a81cc41 with Money #394–#403 and floating timer #404. Corrected the EGA Skills 2026-11-03 live-verifier result from unresolved to failed. Preserved older deployment evidence as dated, not current DEV/Production acceptance. EGA Skills and Gymtrack full source/runtime reconciliation remains pending; no project code, migrations, releases or credentials changed.
