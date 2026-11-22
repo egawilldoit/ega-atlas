@@ -1,7 +1,7 @@
 ---
 type: project
 status: active
-updated: 2026-11-15
+updated: 2026-11-22
 related: [gymtrack, agent-delivery-workflow, 0002-native-t3-execution-ownership]
 ---
 
@@ -11,7 +11,7 @@ Owner-facing control plane for **Linear issue → native T3 Code execution → t
 
 ## Current state
 
-**Historical deployment check 2026-10-25; source rechecked 2026-11-15.** v0.2 code is merged to `develop` and its frontend is deployed to DEV; **full hosted v0.2 acceptance is still open**. Production remains v0.1 plus an independently approved security patch.
+**Historical deployment check 2026-10-25; source rechecked 2026-11-15; Linear rechecked 2026-11-22.** v0.2 code is merged to `develop` and its frontend is deployed to DEV; **full hosted v0.2 acceptance is still open**. Production remains v0.1 plus an independently approved security patch.
 
 | Layer | Verified code/deployment state | Acceptance boundary |
 |---|---|---|
@@ -19,7 +19,7 @@ Owner-facing control plane for **Linear issue → native T3 Code execution → t
 | Vercel DEV | READY, `dev-helm.egawilldoit.online` aliases deployment at the same `develop` SHA | Frontend deployed; Convex backend/version parity **not reverified** this pass |
 | GitHub Production | `main@d17c4f575f04af111fe8b172fc7f2e046dbead27` | v0.1 with security-only patch, **not v0.2** |
 | Vercel Production | READY, `live-helm.egawilldoit.online` aliases the same `main` SHA | Deployment READY; no new owner-browser acceptance claim |
-| Product | [EGA-685](https://linear.app/egawilldoit/issue/EGA-685) Backlog, [EGA-768](https://linear.app/egawilldoit/issue/EGA-768) Backlog/HOLD | R01–R12 owner DEV journey and Production promotion **not accepted** |
+| Product | [EGA-685](https://linear.app/egawilldoit/issue/EGA-685) Canceled, [EGA-768](https://linear.app/egawilldoit/issue/EGA-768) Canceled (promotion not authorized) | R01–R12 owner DEV journey and Production promotion **not accepted** |
 
 ### Newer source integration (checked 2026-11-15)
 
@@ -50,6 +50,8 @@ GitHub `develop@a0b89caf451a6b63f774b5a428ea3c5daf037ac0` contains merged [#40�
 
 ## Open questions
 
+- Linear EGA-685 and EGA-768 were both **Canceled** on 2026-11-02 (rechecked 2026-11-22), contrary to the older Backlog snapshot. Identify the replacement owner-acceptance and Production-approval tracking before planning a promotion; cancellation is not acceptance.
+
 - Is Convex DEV currently deployed at the matching v0.2 backend SHA, and are the exact native-write environment guards configured against a genuinely disposable T3 instance?
 - Has the owner completed Helm's own Linear OAuth consent, mapping and live issue selection? No verified positive end-to-end evidence was available in this check.
 - Which R01–R12 hosted receipts remain for EGA-685, including real PR verification and negative authorization/recovery tests?
@@ -59,8 +61,8 @@ GitHub `develop@a0b89caf451a6b63f774b5a428ea3c5daf037ac0` contains merged [#40�
 
 1. Verify Convex DEV code/deployment parity, owner login and saved Linear OAuth connection; establish one safe mapped issue.
 2. Independently verify a truly disposable T3 target, grant and DEV-only environment binding; obtain separate authorization before real launch/follow-up/interrupt.
-3. Execute [EGA-685](https://linear.app/egawilldoit/issue/EGA-685) real R01–R12 DEV owner acceptance and record exact source/deployment identities, positive/negative cases and recovery.
-4. Keep [EGA-768](https://linear.app/egawilldoit/issue/EGA-768) Production v0.2 **HOLD** until independent DEV acceptance and fresh explicit Production approval.
+3. Identify the current successor to canceled [EGA-685](https://linear.app/egawilldoit/issue/EGA-685); only then execute authorized R01–R12 DEV owner acceptance with dated evidence.
+4. Keep Production v0.2 **HOLD**; [EGA-768](https://linear.app/egawilldoit/issue/EGA-768) is canceled, not an approval. Require independent DEV acceptance and fresh explicit Production authorization.
 
 ## Links
 
