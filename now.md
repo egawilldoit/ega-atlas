@@ -5,23 +5,22 @@ updated: 2026-11-22
 
 # Now
 
-Source recheck 2026-11-22: Gymtrack, EGA House and EGA Skills have newer merged source. Helm's former acceptance/promotion issues were canceled. Current deployment and acceptance require separate evidence.
+Source recheck 2026-11-22: newer code is merged in Gymtrack, EGA House and EGA Skills. Deployment, DEV acceptance and Production acceptance are separate, unverified gates.
 
 ## Priorities (in order)
 
-1. **Full-time job:** DevOps/Cloud, then CRM; Rabat/Casablanca. Working target: five quality applications daily. [Job hunt](wiki/areas/job-hunt.md).
-2. **Gymtrack:** Sprint 2 closed by owner acceptance; plan Sprint 3 deferred verification and staff-policy work. [Gymtrack](wiki/projects/gymtrack.md).
-3. **Helm, then EGA Skills:** certify Helm v0.2's real DEV journey; EGA Skills MCP release is live; separate owner/client acceptance remains. [Helm](wiki/projects/helm.md) · [EGA Skills](wiki/projects/ega-skills.md).
+1. **Full-time job:** DevOps/Cloud, then CRM; Rabat/Casablanca. Working target five quality applications daily. [Job hunt](wiki/areas/job-hunt.md).
+2. **Gymtrack:** Sprint 2 accepted with deferred verification; plan Sprint 3 security/deletion and hosted QA. [Gymtrack](wiki/projects/gymtrack.md).
+3. **Helm, then EGA Skills:** validate real DEV journey and canonical MCP/client acceptance. [Helm](wiki/projects/helm.md) · [EGA Skills](wiki/projects/ega-skills.md).
 
 ## Active work
 
-- **Gymtrack:** 2026-11-22 develop also merged [!165](https://gitlab.com/trackgym101/gymsas/-/merge_requests/165) (theme/filters) and [!167](https://gitlab.com/trackgym101/gymsas/-/merge_requests/167) (modal forms); hosted QA unverified. Earlier [MR !134](https://gitlab.com/trackgym101/gymsas/-/merge_requests/134) and stacked [!135](https://gitlab.com/trackgym101/gymsas/-/merge_requests/135) merged to `develop@d7882f5` on 2026-11-11: 35 routes covered, persistent sidebar/loading UX, protected CircleCI and Vercel checks green. [Illustrated handoff](raw/gymtrack/2026-11-11-frontend-ui-unification-delivery.md). Hosted auth/tenant QA, Sprint 3 security/deletion and Production approval remain separate.
-- **Helm:** [PRs #40–#47](https://github.com/EGA-BUILDS/helm/pulls?q=is%3Apr+is%3Amerged) also merged to develop; DEV backend and owner acceptance unverified. Earlier [PRs #35–#39](https://github.com/EGA-BUILDS/helm/pulls?q=is%3Apr+is%3Amerged) merged 2026-10-23. Vercel DEV serves `develop@90b3852`; Production serves security-patched **v0.1** `main@d17c4f5`. Backend/Convex alignment and real Linear → T3 → PR owner acceptance are not certified. [EGA-685](https://linear.app/egawilldoit/issue/EGA-685) and [EGA-768](https://linear.app/egawilldoit/issue/EGA-768) are Canceled; Production v0.2 remains unapproved.
-- **EGA Skills:** main includes merged [#203](https://github.com/egawilldoit/ega-skills/pull/203) empty-catalog compatibility (2026-11-18); live catalog/acceptance unverified. CI Batches 0–5 merged via [#197](https://github.com/egawilldoit/ega-skills/pull/197) and [#198](https://github.com/egawilldoit/ega-skills/pull/198); [main CI](https://github.com/egawilldoit/ega-skills/actions/runs/41676267240) green at `10139052c`. Linux PR ~48% and full Linux/Windows ~54% faster versus historical medians, with neutral job-minutes. [Evidence](raw/ega-skills/2026-11-03-ci-cd-performance-optimization.md). [live release verification](https://github.com/egawilldoit/ega-skills/actions/runs/41676899300) **failed** on 2026-11-03; newer main requires a separate fresh release check; older Batch 1 verifier failed, so do not assume production acceptance. Console/client and recovery acceptance remain open.
-- **EGA House:** main now includes merged [#422–#424](https://github.com/egawilldoit/Ega-House-Platform/pulls?q=is%3Apr+is%3Amerged) web/Money/task simplification (2026-11-22); production acceptance unverified. Money PRs #394–#403 and floating-timer [#404](https://github.com/egawilldoit/Ega-House-Platform/pull/404) merged by 2026-11-15; Production migration/browser acceptance not certified. Earlier [CI PR #341](https://github.com/egawilldoit/Ega-House-Platform/pull/341) merged: `main@4c426a1` [full CI](https://github.com/egawilldoit/Ega-House-Platform/actions/runs/41526874883) green in **190s**. Optimized runs have median **181s** vs selected 346s baseline. [Full report](raw/ega-house/2026-11-02-ci-cd-performance-and-release-safety.md). Shell [#339](https://github.com/egawilldoit/Ega-House-Platform/pull/339) merged; production at new SHA, authenticated E2E and [#337](https://github.com/egawilldoit/Ega-House-Platform/pull/337) CPU savings not independently verified.
+- **Gymtrack:** [!134/!135](https://gitlab.com/trackgym101/gymsas/-/merge_requests/134) integrated 35-route redesign; [!165](https://gitlab.com/trackgym101/gymsas/-/merge_requests/165) theme/filters and [!167](https://gitlab.com/trackgym101/gymsas/-/merge_requests/167) modal forms merged to `develop@34548d38` on November 22. Current hosted auth/tenant QA, security and Production acceptance unverified.
+- **Helm:** [#40–#47](https://github.com/EGA-BUILDS/helm/pulls?q=is%3Apr+is%3Amerged) merged to develop; historical DEV frontend receipt, Convex parity unverified. Production remains security-patched v0.1. [EGA-685](https://linear.app/egawilldoit/issue/EGA-685) and [EGA-768](https://linear.app/egawilldoit/issue/EGA-768) are **Canceled**, not accepted; identify successor approval gates.
+- **EGA Skills:** [#203](https://github.com/egawilldoit/ega-skills/pull/203) compatibility merged to `main@dc5a74a9` November 18. Earlier November 3 release verifier failed. Current canonical release, Console/client and recovery acceptance unverified.
+- **EGA House:** [#422–#424](https://github.com/egawilldoit/Ega-House-Platform/pulls?q=is%3Apr+is%3Amerged) web/Money/task simplification merged to `main@b0e30aca` November 22. Current CI, Production migrations, authenticated E2E and CPU savings unverified.
 
 ## Watch out
 
-- A merged PR, a READY deployment and a real owner-accepted journey are three different states.
-- Sprint closure is not full certification. GYM-75 is In Progress; permanent deletion still requires approved policy.
-- Do not mistake Helm's Production security-only patch for v0.2 promotion.
+- Merged code, green CI, READY deployment, DEV-accepted and Production-accepted are different states.
+- Sprint closure does not approve permanent deletion or Production rollout.
