@@ -1,7 +1,7 @@
 ---
 type: project
 status: active
-updated: 2026-11-15
+updated: 2026-11-22
 related: [agent-delivery-workflow, helm]
 ---
 
@@ -11,7 +11,7 @@ Personal productivity platform (Project → Goal → Task → Timer → Review),
 
 ## Current state
 
-**Source checkpoint 2026-11-15:** GitHub `main@a81cc417d52621b49f9f162707cfa4349bc4e0a9` is newer than the CI baseline below. [PRs #394–#403](https://github.com/egawilldoit/Ega-House-Platform/pulls?q=is%3Apr+is%3Amerged) include merged Money tracking, obligations, reserves, day close and period rollover work (2026-11-11–13); [#404](https://github.com/egawilldoit/Ega-House-Platform/pull/404) merged a Document Picture-in-Picture floating focus timer on 2026-11-15. These are **source-merged**, not verified Production migrations, authenticated browser acceptance or measured CPU savings. Older deployment/CI evidence below applies to its dated SHA only.
+**Source checkpoint 2026-11-15 (superseded by newer 2026-11-22 main):** GitHub `main@a81cc417d52621b49f9f162707cfa4349bc4e0a9` is newer than the CI baseline below. [PRs #394–#403](https://github.com/egawilldoit/Ega-House-Platform/pulls?q=is%3Apr+is%3Amerged) include merged Money tracking, obligations, reserves, day close and period rollover work (2026-11-11–13); [#404](https://github.com/egawilldoit/Ega-House-Platform/pull/404) merged a Document Picture-in-Picture floating focus timer on 2026-11-15. These are **source-merged**, not verified Production migrations, authenticated browser acceptance or measured CPU savings. Older deployment/CI evidence below applies to its dated SHA only.
 
 
 - [Ega-House-Platform](https://github.com/egawilldoit/Ega-House-Platform) `main@4c426a1d0a6be1d2e22b34860ba96db7236b9001`, verified 2026-11-02. [PR #341](https://github.com/egawilldoit/Ega-House-Platform/pull/341) merged at 21:16 UTC; [post-merge main CI](https://github.com/egawilldoit/Ega-House-Platform/actions/runs/41526874883) **success: 190s, 17 successful jobs and 1 informational skip**. [Full CI/CD delivery report, results and 43-technique audit](../../raw/ega-house/2026-11-02-ci-cd-performance-and-release-safety.md). [PR #339](https://github.com/egawilldoit/Ega-House-Platform/pull/339) was already merged, with separate manual acceptance/E2E boundaries.
@@ -23,6 +23,8 @@ Personal productivity platform (Project → Goal → Task → Timer → Review),
 - Earlier #339 made package/regression/lint jobs change-aware; its 331→285s report is separate from #341. **PR #341 shipped:** strict `hygiene`, exact-SHA/run/attempt mobile release evidence, safe main concurrency, `.npmrc` filters, parallel web build/Playwright/typecheck and two complete Vitest shards (306 files/2313 tests). Measured full-matrix baseline **346s**, optimized runs **141/172/250/190s** (four-run descriptive median **181s, −47.7%**); runner-minutes rose on average. [Detailed record](../../raw/ega-house/2026-11-02-ci-cd-performance-and-release-safety.md).
 - Verification boundaries: the [PR report](https://github.com/egawilldoit/Ega-House-Platform/pull/339) records typecheck/build, 2,284 web tests and two visual shell contracts passed. Authenticated shell-persistence E2E did not run; drawer/timer cases remain unconditional skips. E2E work was explicitly excluded from this delivery. Production-default test targets and weak shortcut/document-navigation assertions remain unresolved. The database seed URL is required for notification seeding, not merely creating the navigation fixture.
 - Autonomous Runner integration is separate from Helm's native T3 control plane. No end-to-end Production delivery acceptance is inferred from merged features.
+
+**Fresh main source check (2026-11-22):** `main@b0e30aca25ed169dc9254f3fa6d120c536eaa270` includes merged [#422](https://github.com/egawilldoit/Ega-House-Platform/pull/422) (consolidated secondary web pages, Projects/Goals, Settings), [#423](https://github.com/egawilldoit/Ega-House-Platform/pull/423) (Money UI and recurring-obligation consolidation), and [#424](https://github.com/egawilldoit/Ega-House-Platform/pull/424) (task authority/dead-code cleanup). These commit messages establish **merged source**, not independently verified CI, deployment, migrations, authenticated DEV journeys, Production acceptance or measured CPU reduction. Reconcile the UI and Money acceptance matrix against this head before making further simplification claims.
 
 ## Decisions
 
@@ -41,6 +43,8 @@ Personal productivity platform (Project → Goal → Task → Timer → Review),
 - Will the strict release-evidence CLI accept the full main run #41526874883 before any APK/OTA? A stable 10-run CI performance p50/p90 also remains pending.
 
 ## Next steps
+
+- Verify exact-head CI and current Vercel web/API aliases for `b0e30aca`, then check migration parity and authenticated browser flows separately. Do not infer Production acceptance from merged refactors.
 
 0. Before any APK/OTA, verify exact SHA `4c426a1` with `release-evidence.mjs`; dispatch force-full only if needed. Collect ≥10 comparable full-matrix CI runs before promoting a stable median claim.
 
