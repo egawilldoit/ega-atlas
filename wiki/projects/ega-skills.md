@@ -1,7 +1,7 @@
 ---
 type: project
 status: active
-updated: 2026-11-03
+updated: 2026-11-22
 related: [agent-delivery-workflow, 0005-ega-skills-automatic-production-release]
 ---
 
@@ -80,6 +80,8 @@ The recovery helper restores a healthy predecessor only while the failed deploym
 The supplied #193 report records focused adapter tests and a real superseded-release no-op without a production write. Destructive recovery was **not** demonstrated on a disposable live Vercel project. Do not describe tests as live recovery evidence or intentionally break canonical production to obtain it.
 
 #194 aligned five guidance files with the implemented flow: agent instructions, automatic release runbook, operator runbook, MCP Vercel guide and the historical separate Web Console guide. Its web-console CI job initially timed out waiting for a test server; the unchanged commit passed on retry, followed by `ci-gate`. No runtime fix or gate bypass was used for that documentation merge.
+
+**Fresh source check (2026-11-22):** GitHub `main@dc5a74a9d2086c2522875b2c1e74cd8cdcf7b908` includes merged [#203](https://github.com/egawilldoit/ega-skills/pull/203), titled *empty-catalog platform and release compatibility* (merged 2026-11-18). This establishes source integration only; exact-head CI, canonical deployment, catalog content, release verifier, recovery and owner/client acceptance were not independently certified in this pass. Linear [EGA-731](https://linear.app/egawilldoit/issue/EGA-731) remains In Review and [EGA-732](https://linear.app/egawilldoit/issue/EGA-732) remains Backlog (checked 2026-11-22). Do not equate a merged compatibility PR with an empty live catalog or an accepted release.
 
 ## Decisions
 
