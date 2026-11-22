@@ -140,3 +140,6 @@ Added an original, public-safe 35-route coverage diagram and embedded it in the 
 
 ## [2026-11-15] update | helm, ega-house, now.md, index.md | ChatGPT
 Rechecked GitHub source heads: Helm develop a0b89ca with merged #40–#47; EGA House main a81cc41 with Money #394–#403 and floating timer #404. Corrected the EGA Skills 2026-11-03 live-verifier result from unresolved to failed. Preserved older deployment evidence as dated, not current DEV/Production acceptance. EGA Skills and Gymtrack full source/runtime reconciliation remains pending; no project code, migrations, releases or credentials changed.
+
+## [2026-11-22] update | helm, ega-house, ega-skills, gymtrack, now.md, index.md | ChatGPT
+Rechecked GitHub/GitLab main/develop commits and selected Linear issues: EGA House #422–#424, EGA Skills #203 and Gymtrack !165/!167 merged; Helm EGA-685/EGA-768 canceled, not accepted. Reconciled existing pages and navigation without claiming fresh CI, live deployments, DEV or Production acceptance. No project source, migrations, credentials, releases or merges changed.
