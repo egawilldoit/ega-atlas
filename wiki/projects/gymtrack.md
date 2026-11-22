@@ -1,7 +1,7 @@
 ---
 type: project
 status: active
-updated: 2026-11-11
+updated: 2026-11-22
 related: [helm, agent-delivery-workflow, 0003-gymtrack-shared-dev-migrations, 0004-gymtrack-sprint-2-acceptance]
 ---
 
@@ -10,6 +10,9 @@ related: [helm, agent-delivery-workflow, 0003-gymtrack-shared-dev-migrations, 00
 Multi-tenant gym-management SaaS. Sprint 2 delivered application-led onboarding, Owner activation, staff administration and custom action permissions in DEV. The owner closed the sprint on 2026-10-30 with explicit verification and deletion work deferred to Sprint 3.
 
 ## Current state
+
+**Fresh GitLab source check (2026-11-22):** `develop@34548d38a7e7cf34ef0fca50ad58bc7de24a1958` includes merged [!165](https://gitlab.com/trackgym101/gymsas/-/merge_requests/165) (light/dark theme and dynamic filters) and [!167](https://gitlab.com/trackgym101/gymsas/-/merge_requests/167) (dashboard management forms in modal dialogs). This supersedes the November 11 source head as the latest observed integration state. CI, currently served DEV web/API, authenticated UX, tenant authorization and Production acceptance were **not** verified at this SHA. The historical 35-route handoff remains evidence for its own dated merge, not for today's deployed interface.
+
 
 [GYM-71 is Done](https://linear.app/egawilldoit/issue/GYM-71). This records owner acceptance of delivered scope, **not full hosted security certification or production readiness**. [Decision 0004](../decisions/0004-gymtrack-sprint-2-acceptance.md) explains the changed closure boundary.
 
